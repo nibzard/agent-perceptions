@@ -1,0 +1,17 @@
+name: ai_survey
+channels: [conda-forge, defaults]
+dependencies:
+  - python=3.11
+  - pandas
+  - matplotlib
+  - seaborn        # for colour palettes only
+  - scipy
+  - scikit-learn
+  - kmodes
+  - prince         # MCA
+  - statsmodels
+  - keybert
+  - sentence-transformers
+  - jupyterlab
+  - quarto
+  - pyarrow        # for Parquet support

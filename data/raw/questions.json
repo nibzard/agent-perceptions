@@ -1,0 +1,108 @@
+[
+  {
+    "id": 1,
+    "question": "When will autonomous AI agents replace human programmers?",
+    "options": [
+      "Never - creativity can't be automated",
+      "Already happening for simple tasks",
+      "5-10 years for most programming tasks",
+      "Machines will write 99% of code by 2030"
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Which conventional system will multi-agent AI completely disrupt first?",
+    "options": [
+      "Software development lifecycle",
+      "Corporate decision-making hierarchies",
+      "Knowledge work industry",
+      "Traditional education systems"
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What's stopping your company from deploying autonomous agent systems TODAY?",
+    "options": [
+      "Fear of the unknown",
+      "Technical leadership doesn't understand the potential",
+      "Regulatory/compliance or technical readiness concerns",
+      "We ARE deploying them now"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "When agents make critical business decisions autonomously, who is responsible?",
+    "options": [
+      "The developers who built the system",
+      "The company deploying the agents",
+      "The agents themselves (new legal frameworks needed)",
+      "All decisions need human approval (defeating the purpose)"
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Which capability will define the NEXT generation of agent systems beyond current LLMs?",
+    "options": [
+      "Self-modification of their own architecture",
+      "Memory",
+      "Perfect theory of mind about humans",
+      "True causal reasoning"
+    ]
+  },
+  {
+    "id": 6,
+    "question": "How many specialized agents should optimally work together on complex tasks?",
+    "options": [
+      "2-3 (minimal communication overhead)",
+      "5-10 (balance of specialization and coordination)",
+      "50+ (massive specialization networks)",
+      "Fluid/dynamic number based on task (emergent organization)"
+    ]
+  },
+  {
+    "id": 7,
+    "question": "What would you sacrifice for an AI agent system that increases your team's productivity by 10x?",
+    "options": [
+      "Nothing, the risks outweigh the benefits",
+      "Privacy (complete work environment monitoring)",
+      "Control (allow autonomous decision execution)",
+      "Job security (including your own position)"
+    ]
+  },
+  {
+    "id": 8,
+    "question": "Which hard limit of current agent systems most needs to be broken?",
+    "options": [
+      "Inability to truly understand human emotions",
+      "Lack of genuine curiosity and self-directed learning",
+      "Reasoning failures under uncertainty",
+      "The need for human oversight"
+    ]
+  },
+  {
+    "id": 9,
+    "question": "How should powerful multi-agent systems be controlled?",
+    "options": [
+      "Strong regulation and licensing",
+      "Open source transparency",
+      "Self-governing AI systems",
+      "Market competition and user choice"
+    ]
+  },
+  {
+    "id": 10,
+    "question": "In a world with widespread agent deployment, humans will primarily:",
+    "options": [
+      "Provide oversight and creative direction",
+      "Focus on purely interpersonal/emotional work",
+      "Be largely unnecessary for knowledge work",
+      "Develop new types of work we can't yet imagine"
+    ]
+  },
+  {
+    "id": 11,
+    "question": "Share your thoughts on coding with AI or any additional comments about this survey:",
+    "type": "textarea",
+    "placeholder": "Enter your thoughts here... (optional)"
+  }
+]

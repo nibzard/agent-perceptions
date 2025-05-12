@@ -1,0 +1,5 @@
+K-Modes Clustering: Justification for best_k = 3
+
+Based on the elbow plot of inertia (cost) versus number of clusters (k), the largest reduction in inertia occurs between k=2 and k=3. After k=3, the decrease in inertia flattens, indicating diminishing returns for additional clusters. Therefore, k=3 is selected as the optimal number of clusters for the main analysis and reporting in the paper.
+
+See results/kmodes_elbow.png for the plot.

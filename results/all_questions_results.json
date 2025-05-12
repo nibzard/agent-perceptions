@@ -1,0 +1,72 @@
+{
+  "Q1": {
+    "5-10 years for most programming tasks": 0.1984126984126984,
+    "Already happening for simple tasks": 0.4523809523809524,
+    "Machines will write 99% of code by 2030": 0.1349206349206349,
+    "Never - creativity can't be automated": 0.1746031746031746,
+    "No opinion": 0.03968253968253968
+  },
+  "Q2": {
+    "Corporate decision-making hierarchies": 0.09523809523809523,
+    "Knowledge work industry": 0.25396825396825395,
+    "No opinion": 0.047619047619047616,
+    "Software development lifecycle": 0.4523809523809524,
+    "Traditional education systems": 0.15079365079365079
+  },
+  "Q3": {
+    "Fear of the unknown": 0.14285714285714285,
+    "No opinion": 0.06349206349206349,
+    "Regulatory/compliance or technical readiness concerns": 0.36507936507936506,
+    "Technical leadership doesn't understand the potential": 0.18253968253968253,
+    "We ARE deploying them now": 0.24603174603174602
+  },
+  "Q4": {
+    "All decisions need human approval (defeating the purpose)": 0.3492063492063492,
+    "No opinion": 0.047619047619047616,
+    "The agents themselves (new legal frameworks needed)": 0.07142857142857142,
+    "The company deploying the agents": 0.4523809523809524,
+    "The developers who built the system": 0.07936507936507936
+  },
+  "Q5": {
+    "Memory": 0.18253968253968253,
+    "No opinion": 0.12698412698412698,
+    "Perfect theory of mind about humans": 0.07142857142857142,
+    "Self-modification of their own architecture": 0.35714285714285715,
+    "True causal reasoning": 0.2619047619047619
+  },
+  "Q6": {
+    "2-3 (minimal communication overhead)": 0.09523809523809523,
+    "5-10 (balance of specialization and coordination)": 0.21428571428571427,
+    "50+ (massive specialization networks)": 0.03968253968253968,
+    "Fluid/dynamic number based on task (emergent organization)": 0.5317460317460317,
+    "No opinion": 0.11904761904761904
+  },
+  "Q7": {
+    "Control (allow autonomous decision execution)": 0.31746031746031744,
+    "Job security (including your own position)": 0.23015873015873015,
+    "No opinion": 0.09523809523809523,
+    "Nothing, the risks outweigh the benefits": 0.1746031746031746,
+    "Privacy (complete work environment monitoring)": 0.18253968253968253
+  },
+  "Q8": {
+    "Inability to truly understand human emotions": 0.047619047619047616,
+    "Lack of genuine curiosity and self-directed learning": 0.16666666666666666,
+    "No opinion": 0.1111111111111111,
+    "Reasoning failures under uncertainty": 0.4365079365079365,
+    "The need for human oversight": 0.23809523809523808
+  },
+  "Q9": {
+    "Market competition and user choice": 0.1746031746031746,
+    "No opinion": 0.11904761904761904,
+    "Open source transparency": 0.38095238095238093,
+    "Self-governing AI systems": 0.12698412698412698,
+    "Strong regulation and licensing": 0.1984126984126984
+  },
+  "Q10": {
+    "Be largely unnecessary for knowledge work": 0.047619047619047616,
+    "Develop new types of work we can't yet imagine": 0.373015873015873,
+    "Focus on purely interpersonal/emotional work": 0.07936507936507936,
+    "No opinion": 0.0873015873015873,
+    "Provide oversight and creative direction": 0.4126984126984127
+  }
+}

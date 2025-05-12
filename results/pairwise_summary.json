@@ -1,0 +1,31 @@
+{
+  "n_tests": 45,
+  "n_significant": 39,
+  "n_significant_fdr": 39,
+  "effect_sizes": {
+    "negligible": 1,
+    "small": 36,
+    "medium": 8,
+    "large": 0
+  },
+  "strongest_pairs": [
+    {
+      "q1": "Q7",
+      "q2": "Q10",
+      "cramers_v": 0.3778682574734734,
+      "effect_size": "medium"
+    },
+    {
+      "q1": "Q4",
+      "q2": "Q7",
+      "cramers_v": 0.3642621003703525,
+      "effect_size": "medium"
+    },
+    {
+      "q1": "Q8",
+      "q2": "Q9",
+      "cramers_v": 0.35744711573907484,
+      "effect_size": "medium"
+    }
+  ]
+}

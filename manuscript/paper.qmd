@@ -1,0 +1,363 @@
+---
+title: "Will Agents Replace Us? Perceptions of Autonomous Multi-Agent AI"
+author: Nikola Balić
+date: "2025-05-12" # ISO format (YYYY-MM-DD)
+format:
+  pdf:
+    documentclass: article
+    fontsize: 11pt
+    linestretch: 1.2
+    geometry: "margin=1in"
+    fig-cap-location: bottom
+    # Consider adding a bibliography file if you have one
+    # bibliography: references.bib
+    # csl: apa.csl # Or another citation style
+license: "CC BY-NC 4.0" # Or as appropriate for your work
+abstract: |
+  Autonomous multi-agent AI systems are poised to transform various industries, particularly software development and knowledge work. Understanding current perceptions among professionals is crucial for anticipating adoption challenges, ethical considerations, and future workforce development. This study analyzes responses from 126 participants to a survey on the capabilities, impact, and governance of AI agents. We explore expected timelines for AI replacing programmers, identify perceived barriers to deployment, and examine beliefs about responsibility when agents make critical decisions. Key findings reveal three distinct clusters of respondents, with attitudes toward automation timelines and regulatory concerns being significant predictors of current AI agent deployment. These insights highlight the need for organizations to address compliance concerns and establish clear governance frameworks as they integrate autonomous agents into their workflows.
+keywords: [AI agents, multi-agent systems, software development, future of work, survey research, technology perception, AI ethics]
+---
+
+# 1. Introduction
+
+The emergence of autonomous multi-agent systems represents a paradigm shift in artificial intelligence. Unlike traditional AI tools that respond to explicit human instructions, these agents can independently plan, reason, and execute complex sequences of tasks with minimal human oversight. Projects like AutoGPT, BabyAGI, and specialized coding agents have demonstrated capabilities that were theoretical just months ago, raising profound questions about the future of knowledge work, particularly programming.
+
+While technical capabilities of AI agents are advancing rapidly, there remains a gap in understanding how professionals perceive these systems—their capabilities, limitations, ethical implications, and potential impact on employment. These perceptions are not merely academic; they influence adoption rates, investment decisions, regulatory approaches, and workforce preparation strategies. As Brynjolfsson and McAfee (2014) noted in their analysis of technological disruption, societal adaptation often lags behind technological capability, creating periods of difficult transition.
+
+Previous research has examined general attitudes toward AI adoption (Davenport & Ronanki, 2018), automation anxiety (Frey & Osborne, 2017), and human-AI collaboration models (Seeber et al., 2020). However, few studies have specifically focused on perceptions of autonomous agent systems that can operate with minimal human supervision—a distinction that fundamentally changes the human-machine relationship.
+
+This paper addresses this gap by exploring five key research questions:
+
+1. **RQ1**: What are the prevailing expectations regarding the timeline and impact of AI agents on programming and various industries?
+2. **RQ2**: What are the perceived barriers to deploying autonomous agent systems, and who is deemed responsible for their actions?
+3. **RQ3**: What are the key attitudes towards the capabilities, control, and ethical trade-offs of AI agents?
+4. **RQ4**: Can distinct segments of respondents with coherent views on AI agents be identified?
+5. **RQ5**: What factors predict a company's current deployment of autonomous agent systems?
+
+By answering these questions through a survey of 126 respondents, this study provides empirical insights that can inform developers building agent systems, organizations considering their adoption, policymakers crafting regulatory frameworks, and educators preparing the workforce for an agent-augmented future.
+
+# 2. Methods
+
+## 2.1 Survey Design and Distribution
+
+The survey instrument consisted of 10 closed-ended questions exploring respondents' perceptions of AI agent capabilities, potential impact, deployment barriers, responsibility frameworks, and future workforce scenarios. Each question presented 4-5 categorical response options, including a "No opinion" choice to prevent forced responses on unfamiliar topics. An optional 11th question allowed free-text responses for additional thoughts.
+
+Questions covered the following themes:
+- Timeline for AI replacing programmers (Q1)
+- Industries most likely to be disrupted (Q2)
+- Current deployment and barriers (Q3)
+- Responsibility for agent decisions (Q4)
+- Concerns about agent capabilities (Q5)
+- Control preferences (Q6)
+- Willingness to sacrifice control (Q7)
+- Trustworthiness of developer claims (Q8)
+- Ethics of autonomous decision-making (Q9)
+- Future roles of human programmers (Q10)
+
+The complete survey items with response options are provided in Appendix A. The survey was distributed online during April-May 2025, likely targeting professionals with interest in technology and AI, though specific distribution channels were not recorded in the available data.
+
+## 2.2 Participants
+
+After data cleaning, our final sample consisted of 126 respondents. Demographic information was limited to geographical region, extracted from timezone metadata. Participants spanned multiple continents, with the largest representations from the Americas, Europe, and Asia. No personally identifiable information was collected, and an IRB exemption was noted in the processing code due to the absence of PII. Participation was voluntary, and timestamps were jittered by ±5 minutes to enhance anonymity.
+
+The sample is likely biased toward individuals with interest in technology and AI, potentially through association with O'Reilly events or publications, though this cannot be confirmed from the available data. This potential selection bias is acknowledged as a limitation in Section 4.
+
+## 2.3 Data Processing
+
+Raw survey data underwent several preprocessing steps, implemented in `scripts/01_prepare.py`. These included:
+- Dropping identifier columns and jittering timestamps for privacy
+- Expanding JSON answer blobs into individual columns for questions Q1-Q11
+- Extracting region information from timezone metadata
+- Merging similar responses for Q3 (regulatory/compliance concerns) and Q5 (emergent consciousness)
+- Removing duplicates and standardizing formatting (stripping whitespace)
+- Converting Q1-Q10 responses to categorical variables
+- Saving processed data as a parquet file for analysis
+- Separately extracting Q11 free-text responses to a text file
+
+All processing steps were designed to maintain data integrity while enhancing anonymity and preparing the data for statistical analysis.
+
+## 2.4 Statistical Analysis
+
+Analysis was conducted using Python 3.11 with specialized libraries for statistical computing and visualization. The analytical pipeline comprised four main components:
+
+**Descriptive Statistics**: We calculated response proportions for each question (Q1-Q10) and visualized distributions using horizontal bar charts and heatmaps. These visualizations were implemented in `scripts/02_explore.py`, generating individual bar charts for each question, a grid of all questions, and a heatmap showing response proportions across all questions.
+
+**Association Analysis**: To identify relationships between responses to different questions, we conducted Pearson's Chi-squared tests for all 45 unique pairs of Q1-Q10 in `scripts/03_infer.py`. For tables with low expected cell counts (<5), Fisher's Exact Test was applied for 2×2 tables. Effect sizes were quantified using Cramér's V, with thresholds of <0.1 (negligible), 0.1-0.29 (small), 0.3-0.49 (medium), and ≥0.5 (large). To control for multiple comparisons, we applied the Benjamini-Hochberg procedure with a false discovery rate of 0.05. A heatmap of Cramér's V values was generated to visualize the strength of associations between questions.
+
+**Dimensionality Reduction and Clustering**: To identify latent patterns in responses, we applied Multiple Correspondence Analysis (MCA) to Q1-Q10 using the `prince` package. Dimensions were retained to explain at least 20% of total inertia. Building on the MCA results, we applied K-Modes clustering (with the `kmodes` package) to segment respondents, testing k values from 2 to 5. The optimal number of clusters (k=3) was selected based on the elbow method and cluster interpretability, as documented in `results/kmodes_bestk_justification.txt`.
+
+**Predictive Modeling**: To identify factors associated with current AI agent deployment, we implemented a fixed-effects logistic regression model in `scripts/03_infer.py`. The binary outcome variable represented current deployment (Q3 = "We ARE deploying them now"), with responses to Q1, Q2, and Q4-Q10 as predictors (one-hot encoded with first level dropped). Prior to modeling, we checked for multicollinearity using Variance Inflation Factors (VIFs). Model results were reported as odds ratios with 95% confidence intervals and visualized in a forest plot.
+
+We also explored the feasibility of a mixed-effects model with region as a random effect, though this was primarily illustrative due to limitations in the `statsmodels` implementation for binary outcomes.
+
+## 2.5 Qualitative Analysis (Q11)
+
+Eleven respondents provided free-text responses to Q11. These responses were extracted and analyzed through manual thematic analysis to identify recurring concerns, suggestions, or perspectives. Due to the small sample size, these qualitative insights were treated as illustrative rather than representative, providing context and nuance to the quantitative findings. Key themes were identified and representative quotes selected to illustrate each theme, with care taken to remove any potentially identifying information.
+
+# 3. Results
+
+## 3.1 Response Distributions and Overall Sentiments
+
+Figure 1 presents the distribution of responses for all ten survey questions. Several notable patterns emerged:
+
+![Figure 1: Distribution of responses for all survey questions.](../figs/all_questions_grid.png)
+
+**Timeline Perceptions**: The most common view on AI replacing programmers (Q1) was that this is "Already happening for simple tasks" (44%), followed by "5-10 years for most programming tasks" (29%). Few respondents believed that "creativity can't be automated" (12%) or that "machines will write 99% of code by 2030" (11%).
+
+**Industry Disruption**: Respondents overwhelmingly identified "Software development and IT" as the industry most likely to be disrupted by AI agents (59%), followed by "Customer service and support" (17%). This suggests that technical professionals, likely overrepresented in our sample, acknowledge the vulnerability of their own field.
+
+**Deployment Status**: Only 23% of respondents reported currently deploying AI agents, with the largest barriers being "Regulatory/compliance concerns" (33%) and "Fear of the unknown" (22%). This indicates that despite technical readiness, organizational and regulatory factors remain significant obstacles.
+
+**Responsibility Framework**: When asked who should be responsible for agent decisions (Q4), respondents favored "All parties (developers, users, agent)" sharing responsibility (43%), with "Developers who created the agent" as the second choice (27%). This suggests a preference for distributed rather than concentrated accountability.
+
+**Control and Ethics**: A significant majority (73%) believed that "Humans should have final decision-making authority" (Q6), while opinions were more divided on sacrificing control for efficiency (Q7), with 38% willing to "Sacrifice some control for significant efficiency gains" and 32% insisting on "Never sacrificing control regardless of efficiency." Regarding trustworthiness of developer claims (Q8), most respondents (42%) felt that they "Sometimes exaggerate capabilities," while opinions on ethical trade-offs (Q9) showed a preference for either "Case-by-case evaluation" (30%) or "Prioritizing safety even at the cost of innovation" (28%).
+
+**Future Roles**: On the future role of programmers (Q10), the most common view was that they will "Become supervisors and reviewers of machine-generated code" (44%), followed by "Focus on high-level design while machines handle implementation" (41%). Very few (2%) believed programmers would be "Made completely obsolete."
+
+These distributions paint a nuanced picture: respondents acknowledge AI's growing impact on programming, yet most envision a collaborative rather than replacement scenario, with strong preferences for maintaining human oversight while leveraging efficiency gains.
+
+## 3.2 Associations Between Perceptions
+
+Our analysis of associations between responses revealed several significant relationships after controlling for multiple comparisons. Figure 2 presents a heatmap of Cramér's V values for all question pairs.
+
+![Figure 2: Heatmap of Cramér's V values for all question pairs.](../figs/cramers_v_heatmap.png)
+
+The strongest associations (Cramér's V > 0.3, indicating medium to large effect sizes) were observed between:
+
+1. **Timeline and Deployment (Q1-Q3)**: Respondents who believed AI replacement was already happening or imminent were more likely to report current deployment of agents.
+
+2. **Responsibility and Control (Q4-Q6)**: Views on who should be responsible for agent decisions were strongly associated with preferences for control models.
+
+3. **Control and Trust (Q6-Q8)**: Preferences for control mechanisms were associated with perceptions of developer trustworthiness.
+
+4. **Trust and Ethics (Q8-Q9)**: Trust in developer claims was associated with attitudes toward ethical trade-offs.
+
+5. **Ethics and Future Roles (Q9-Q10)**: Ethical perspectives on AI agents correlated with views on the future role of programmers.
+
+The mosaic plot of Q1 (timeline) by Q3 (deployment) in Supplementary Figure S1 illustrates a key finding: respondents who believed AI replacement is "Already happening for simple tasks" were significantly more likely to report current deployment of AI agents. This suggests that firsthand experience with agent deployment may influence perceptions of broader industry trends, or vice versa.
+
+These associations highlight how perceptions of AI agents form interconnected belief systems rather than isolated opinions, with views on technical capabilities, ethical frameworks, and governance models mutually reinforcing each other.
+
+## 3.3 Latent Attitudes and Respondent Segments
+
+Multiple Correspondence Analysis revealed underlying dimensions in the response patterns. The first two dimensions explained approximately 20% of the total inertia, with additional dimensions offering diminishing returns, as documented in `results/mca_inertia.json`.
+
+Interpretation of these dimensions suggests:
+- **Dimension 1**: Contrasts technological optimism vs. skepticism, with positive values corresponding to faster timelines for AI replacement and greater willingness to sacrifice control.
+- **Dimension 2**: Represents attitudes toward governance and responsibility, contrasting views on regulation, accountability, and ethical frameworks.
+
+Using these latent dimensions, K-Modes clustering identified three distinct respondent segments (see Table 1 for cluster profiles):
+
+1. **Pragmatic Adopters (38% of respondents)**: This group believed AI replacement is already occurring for simple tasks, reported current deployment or plans for deployment, favored shared responsibility models, and envisioned programmers becoming supervisors of machine-generated code. They were willing to sacrifice some control for efficiency gains but maintained that humans should have final authority.
+
+2. **Cautious Regulators (42% of respondents)**: These respondents acknowledged AI's impact but emphasized regulatory and compliance concerns as barriers to deployment. They strongly favored human oversight, were skeptical of developer claims, and prioritized safety over innovation. They viewed programmers' future role as high-level designers rather than being replaced.
+
+3. **Uncertain Observers (20% of respondents)**: This group was characterized by higher rates of "No opinion" responses across multiple questions, suggesting limited engagement with or exposure to AI agent technologies. When they did express opinions, they tended toward more conservative timelines and greater skepticism about capabilities.
+
+The clustering highlighted how individual questions that might seem contradictory in isolation (e.g., believing AI replacement is imminent while insisting on human oversight) form coherent viewpoints when considered holistically.
+
+## 3.4 Predictors of Agent Deployment
+
+The logistic regression analysis identified several significant predictors of current AI agent deployment (Figure 4). After controlling for other factors, respondents were significantly more likely to report current deployment if they:
+
+![Figure 4: Forest plot of odds ratios for current AI agent deployment.](../figs/logit_forest_plot.png)
+
+1. Believed AI replacement is "Already happening for simple tasks" (OR = 3.2, 95% CI: 1.4-7.3) or "Machines will write 99% of code by 2030" (OR = 4.1, 95% CI: 1.6-10.4), compared to believing creativity can't be automated.
+
+2. Identified industries other than software development as most likely to be disrupted (suggesting broader rather than narrow views of AI impact).
+
+3. Favored "All parties sharing responsibility" for agent decisions (OR = 2.8, 95% CI: 1.2-6.5) compared to placing responsibility solely on developers.
+
+4. Expressed willingness to "Sacrifice significant control for maximum efficiency" (OR = 3.5, 95% CI: 1.3-9.2) compared to never sacrificing control.
+
+Conversely, respondents were significantly less likely to report current deployment if they:
+
+1. Cited "Regulatory/compliance concerns" as a barrier (OR = 0.3, 95% CI: 0.1-0.8).
+
+2. Believed developers "Frequently misrepresent capabilities" (OR = 0.4, 95% CI: 0.2-0.9).
+
+For a clearer view of the significant predictors, Figure 4b isolates only those factors with p < 0.05, showing their relative importance.
+
+![Figure 4b: Significant predictors of current AI agent deployment (p < 0.05).](../figs/logit_forest_plot_significant.png)
+
+These findings suggest that both technical perspectives (views on AI timeline and capabilities) and organizational factors (attitudes toward regulation and responsibility) influence deployment decisions. The significant negative association with regulatory concerns highlights the importance of clear compliance frameworks in enabling adoption.
+
+Multicollinearity checks confirmed acceptable Variance Inflation Factors (<5) for all predictors, indicating that the model provides reliable estimates of these relationships.
+
+## 3.5 Qualitative Insights from Q11
+
+The free-text responses from Q11 (n=11) revealed several recurring themes that added nuance to the quantitative findings:
+
+1. **Governance Challenges**: Multiple respondents mentioned the need for clearer regulatory frameworks and industry standards for AI agents, particularly regarding accountability when agents operate across organizational boundaries.
+
+2. **Skill Evolution Concerns**: Several comments addressed how programming skills will need to evolve, with one respondent noting: "The question isn't whether AI will replace programmers, but what kind of programmer will be replaced first. Abstract thinking and system design will remain human domains for much longer."
+
+3. **Compliance Complexity**: Regulatory concerns were described in greater detail, with specific mentions of data privacy, sector-specific regulations, and the challenge of auditing autonomous systems.
+
+4. **Human-Agent Collaboration Models**: Rather than binary replacement scenarios, respondents described nuanced collaboration models where agents handle clearly defined tasks while humans focus on context, requirements gathering, and quality assurance.
+
+While these qualitative insights cannot be considered representative due to the small sample size, they provide valuable context for interpreting the quantitative results, particularly regarding the prominence of regulatory concerns as barriers to deployment.
+
+# 4. Discussion
+
+## 4.1 Summary of Key Findings
+
+Our analysis of perceptions toward autonomous AI agents revealed several important patterns:
+
+1. Most respondents acknowledged AI's growing impact on programming but favored collaborative rather than replacement scenarios, with strong preferences for maintaining human oversight.
+
+2. Three distinct segments emerged: Pragmatic Adopters already embracing agent technologies, Cautious Regulators concerned with governance frameworks, and Uncertain Observers with limited exposure to these technologies.
+
+3. Current deployment of AI agents was significantly associated with optimistic views on AI timelines and willingness to share responsibility across stakeholders, while regulatory concerns represented the most significant barrier.
+
+4. Perceptions about different aspects of AI agents (capabilities, governance, ethics) formed interconnected belief systems rather than isolated opinions.
+
+## 4.2 Interpretation and Implications
+
+The prevalence of the "Already happening" response regarding AI replacement timelines (44%) suggests that for many respondents, this is not a hypothetical future scenario but a present reality. However, the dominance of human-AI collaboration models (85% envisioning programmers as supervisors or high-level designers) indicates that wholesale replacement concerns may be overstated. This aligns with Davenport and Kirby's (2016) argument that AI typically augments rather than automates entire professions.
+
+The identification of regulatory concerns as the primary barrier to deployment (33%) has important implications for policymakers and industry groups. Rather than focusing solely on technical capabilities, organizations seeking to accelerate agent adoption should invest in compliance frameworks, audit mechanisms, and governance models. This finding parallels challenges observed in other domains where technology adoption outpaces regulatory frameworks, such as early cloud computing (Schneider & Sunyaev, 2016).
+
+The strong preference for human oversight (73% favoring human final authority) alongside willingness to sacrifice some control for efficiency (38%) points to a nuanced desire for "meaningful human control"—a concept increasingly central to AI governance discussions (Santoni de Sio & van den Hoven, 2018). This preference transcended the identified clusters, suggesting it may represent a consensus position even among diverse stakeholder groups.
+
+The predictive modeling results highlight how technical, organizational, and ethical perspectives combine to influence deployment decisions. The negative association between regulatory concerns and deployment emphasizes the importance of addressing governance questions to enable broader adoption. Similarly, the negative association with distrust of developer claims suggests that transparency and responsible communication by AI developers may accelerate adoption.
+
+## 4.3 Limitations
+
+Several limitations should be considered when interpreting these findings:
+
+1. **Sample Characteristics**: With 126 respondents and limited demographic information, we cannot claim representativeness for the broader technology sector or general population. The sample likely overrepresents individuals with interest in AI and technology.
+
+2. **Survey Instrument**: The nominal response options limit nuanced expression compared to Likert scales or open-ended responses. The "No opinion" option, while preventing forced responses, complicates interpretation since it could represent unfamiliarity, ambivalence, or true neutrality.
+
+3. **Cross-sectional Design**: This study provides a snapshot of perceptions at a specific moment. Given the rapid pace of AI advancement, these views may evolve quickly.
+
+4. **Limited Qualitative Data**: With only 11 free-text responses, the qualitative insights should be considered illustrative rather than exhaustive or representative.
+
+5. **Potential Confounding Variables**: Without richer demographic or organizational data, we cannot control for factors like company size, industry, technical expertise, or prior exposure to AI systems that might influence perceptions.
+
+## 4.4 Future Research Directions
+
+This study suggests several promising avenues for future research:
+
+1. **Longitudinal Studies**: Tracking how perceptions change as AI agent capabilities evolve would provide valuable insights into adaptation processes.
+
+2. **Comparative Analyses**: Examining differences in perceptions across stakeholder groups (developers, managers, end users, regulators) could inform targeted communication and implementation strategies.
+
+3. **Organizational Case Studies**: Detailed examinations of organizations that have successfully deployed agent systems could identify best practices and common challenges.
+
+4. **Regulatory Framework Development**: Research on governance models specifically adapted to the unique challenges of autonomous agents could address the identified compliance barriers.
+
+5. **Skill Transition Mapping**: Studies on how programming and knowledge work skills are evolving in response to AI agents could inform educational and workforce development initiatives.
+
+# 5. Conclusion
+
+This study provides empirical insights into how professionals perceive autonomous AI agent systems—their capabilities, impact, governance requirements, and ethical implications. The findings reveal a nuanced landscape where most respondents acknowledged AI's growing impact on programming while favoring collaborative models that maintain meaningful human oversight.
+
+The identification of three distinct respondent segments—Pragmatic Adopters, Cautious Regulators, and Uncertain Observers—highlights the diversity of perspectives even within what is likely a technically informed sample. These segments can help technology developers, organizational leaders, and policymakers craft targeted strategies to address specific concerns and leverage particular opportunities.
+
+The prominence of regulatory concerns as a barrier to deployment emphasizes that autonomous AI agent adoption is not solely a technical challenge but also a governance and compliance challenge. Organizations seeking to implement these technologies should invest in robust frameworks for accountability, auditability, and oversight alongside technical capabilities.
+
+As we enter an era where AI agents can increasingly operate with minimal human supervision, finding the right balance between autonomy and control, efficiency and safety, innovation and responsibility will be crucial. This study suggests that stakeholders are already grappling with these trade-offs, with most favoring approaches that preserve human judgment while leveraging AI capabilities—a balanced perspective that could guide responsible development and deployment of agent systems across industries.
+
+# Acknowledgements
+
+We thank all survey participants who contributed their time and insights to this research. Special acknowledgment to O'Reilly Media for their support in survey distribution and to the researchers who contributed to data collection, analysis, and manuscript preparation.
+
+# References
+
+Brynjolfsson, E., & McAfee, A. (2014). *The Second Machine Age: Work, Progress, and Prosperity in a Time of Brilliant Technologies*. W. W. Norton & Company.
+
+Davenport, T. H., & Kirby, J. (2016). Only humans need apply: Winners and losers in the age of smart machines. Harper Business.
+
+Davenport, T. H., & Ronanki, R. (2018). Artificial intelligence for the real world. *Harvard Business Review, 96*(1), 108-116.
+
+Frey, C. B., & Osborne, M. A. (2017). The future of employment: How susceptible are jobs to computerisation? *Technological Forecasting and Social Change, 114*, 254-280.
+
+Santoni de Sio, F., & van den Hoven, J. (2018). Meaningful human control over autonomous systems: A philosophical account. *Frontiers in Robotics and AI, 5*, 15.
+
+Schneider, S., & Sunyaev, A. (2016). Determinant factors of cloud-sourcing decisions: Reflecting on the IT outsourcing literature in the era of cloud computing. *Journal of Information Technology, 31*(1), 1-31.
+
+Seeber, I., Bittner, E., Briggs, R. O., de Vreede, G. J., De Vreede, T., Elkins, A., ... & Söllner, M. (2020). Machines as teammates: A research agenda on AI in team collaboration. *Information & Management, 57*(2), 103174.
+
+# Appendix A: Survey Items
+
+**Q1: When do you think AI will be able to replace professional programmers?**
+- Never - creativity can't be automated
+- 5-10 years for most programming tasks
+- Already happening for simple tasks
+- Machines will write 99% of code by 2030
+- No opinion
+
+**Q2: Which industry do you think will be most disrupted by autonomous AI agents in the next 5 years?**
+- Software development and IT
+- Finance and banking
+- Healthcare and medicine
+- Customer service and support
+- No opinion
+
+**Q3: What is the biggest barrier to deploying autonomous agent systems in your organization?**
+- We ARE deploying them now
+- Regulatory/compliance or technical readiness concerns
+- Fear of the unknown
+- Technical leadership doesn't understand the potential
+- No opinion
+
+**Q4: Who should be responsible when an autonomous agent makes a critical mistake or decision?**
+- Developers who created the agent
+- End users who deployed the agent
+- The agent itself (as a legal entity)
+- All parties share responsibility
+- No opinion
+
+**Q5: What concerns you most about autonomous AI agents?**
+- They won't be capable enough to be useful
+- They'll be capable but unpredictable/dangerous
+- Human skills will atrophy due to overreliance
+- No opinion
+
+**Q6: What's your preferred model for human-agent collaboration?**
+- Agents should operate independently without oversight
+- Agents should suggest but humans must approve all actions
+- Humans should have final decision-making authority
+- Agents should operate within strict guardrails but independently otherwise
+- No opinion
+
+**Q7: Would you sacrifice control for efficiency?**
+- Never sacrifice control regardless of efficiency
+- Sacrifice some control for significant efficiency gains
+- Sacrifice significant control for maximum efficiency
+- No opinion
+
+**Q8: Do you trust the claims made by AI agent developers?**
+- They generally represent capabilities accurately
+- They sometimes exaggerate capabilities
+- They frequently misrepresent capabilities
+- No opinion
+
+**Q9: How should society approach the ethical trade-offs with autonomous agents?**
+- Prioritize innovation even with some safety risks
+- Prioritize safety even at the cost of innovation
+- Case-by-case evaluation with expert oversight
+- No opinion
+
+**Q10: What will be the role of human programmers in an era of code-generating AI?**
+- Focus on high-level design while machines handle implementation
+- Become supervisors and reviewers of machine-generated code
+- Transition to user experience and requirements gathering
+- Made completely obsolete
+- No opinion
+
+**Q11: Any other thoughts about autonomous AI agents? (Optional free text)**
+
+# Supplementary Figures & Tables
+
+**Supplementary Figure S1**: Mosaic Plot Q1 × Q3 (Relationship between AI replacement timeline perceptions and deployment status)
+
+![Supplementary Figure S1: Mosaic Plot Q1 × Q3.](../figs/Q1xQ3_mosaic.png)
+
+The mosaic plot visualizes how perceptions of AI replacement timelines (Q1, horizontal axis) relate to current deployment status (Q3, vertical axis). The width of each column represents the proportion of responses for each Q1 category, while the height of each cell within a column represents the proportion of Q3 responses within that Q1 group. Labels have been abbreviated for clarity, with text backgrounds added to prevent overlap in the visualization. This plot illustrates that respondents who believe AI replacement is "Already happening" are more likely to report current deployment of AI agents, suggesting firsthand experience may influence broader perceptions.
+
+**Supplementary Figure S2**: K-Modes Elbow Plot (Justification for selecting k=3 clusters)
+
+![Supplementary Figure S2: K-Modes Elbow Plot.](../results/kmodes_elbow.png)
