@@ -58,7 +58,7 @@ The complete survey items with response options are provided in Appendix A. The 
 
 ## 2.2 Participants
 
-After data cleaning, our final sample consisted of 126 respondents. Demographic information was limited to geographical region, extracted from timezone metadata. Participants spanned multiple continents, with the largest representations from the Americas, Europe, and Asia. No personally identifiable information was collected, and an IRB exemption was noted in the processing code due to the absence of PII. Participation was voluntary, and timestamps were jittered by ±5 minutes to enhance anonymity.
+After data cleaning, our final sample consisted of 126 respondents. Demographic information was limited to geographical region, extracted from timezone metadata. Participants spanned multiple continents, with the largest representations from the Americas (68, 54%), Europe (47, 37%), Asia (5, 4%), Africa (3, 2%), Australia (2, 2%), and one respondent with UTC (1, 1%) as their region. No personally identifiable information was collected, and an IRB exemption was noted in the processing code due to the absence of PII. Participation was voluntary, and timestamps were jittered by ±5 minutes to enhance anonymity.
 
 The sample is likely biased toward individuals with interest in technology and AI, potentially through association with O'Reilly events or publications, though this cannot be confirmed from the available data. This potential selection bias is acknowledged as a limitation in Section 4.
 
@@ -76,31 +76,25 @@ Raw survey data underwent several preprocessing steps, implemented in `scripts/0
 
 All processing steps were designed to maintain data integrity while enhancing anonymity and preparing the data for statistical analysis.
 
-## 2.4 Statistical Analysis
+**Descriptive Statistics**: We calculated response proportions for each question (Q1-Q10) and visualized distributions using horizontal bar charts and heatmaps. These visualizations were implemented in `scripts/02_explore_v2.py`, generating individual bar charts for each question, a grid of all questions, and a heatmap showing response proportions across all questions.
 
-Analysis was conducted using Python 3.11 with specialized libraries for statistical computing and visualization. The analytical pipeline comprised four main components:
-
-**Descriptive Statistics**: We calculated response proportions for each question (Q1-Q10) and visualized distributions using horizontal bar charts and heatmaps. These visualizations were implemented in `scripts/02_explore.py`, generating individual bar charts for each question, a grid of all questions, and a heatmap showing response proportions across all questions.
-
-**Association Analysis**: To identify relationships between responses to different questions, we conducted Pearson's Chi-squared tests for all 45 unique pairs of Q1-Q10 in `scripts/03_infer.py`. For tables with low expected cell counts (<5), Fisher's Exact Test was applied for 2×2 tables. Effect sizes were quantified using Cramér's V, with thresholds of <0.1 (negligible), 0.1-0.29 (small), 0.3-0.49 (medium), and ≥0.5 (large). To control for multiple comparisons, we applied the Benjamini-Hochberg procedure with a false discovery rate of 0.05. A heatmap of Cramér's V values was generated to visualize the strength of associations between questions.
+**Association Analysis**: To identify relationships between responses to different questions, we conducted Pearson's Chi-squared tests for all 45 unique pairs of Q1-Q10 in `scripts/03_infer_v2.py`. For tables with low expected cell counts (<5), Fisher's Exact Test was applied for 2×2 tables. Effect sizes were quantified using Cramér's V, with thresholds of <0.1 (negligible), 0.1-0.29 (small), 0.3-0.49 (medium), and ≥0.5 (large). To control for multiple comparisons, we applied the Benjamini-Hochberg procedure with a false discovery rate of 0.05. A heatmap of Cramér's V values was generated to visualize the strength of associations between questions.
 
 **Dimensionality Reduction and Clustering**: To identify latent patterns in responses, we applied Multiple Correspondence Analysis (MCA) to Q1-Q10 using the `prince` package. Dimensions were retained to explain at least 20% of total inertia. Building on the MCA results, we applied K-Modes clustering (with the `kmodes` package) to segment respondents, testing k values from 2 to 5. The optimal number of clusters (k=3) was selected based on the elbow method and cluster interpretability, as documented in `results/kmodes_bestk_justification.txt`.
 
-**Predictive Modeling**: To identify factors associated with current AI agent deployment, we implemented a fixed-effects logistic regression model in `scripts/03_infer.py`. The binary outcome variable represented current deployment (Q3 = "We ARE deploying them now"), with responses to Q1, Q2, and Q4-Q10 as predictors (one-hot encoded with first level dropped). Prior to modeling, we checked for multicollinearity using Variance Inflation Factors (VIFs). Model results were reported as odds ratios with 95% confidence intervals and visualized in a forest plot.
-
-We also explored the feasibility of a mixed-effects model with region as a random effect, though this was primarily illustrative due to limitations in the `statsmodels` implementation for binary outcomes.
+**Predictive Modeling**: To identify factors associated with current AI agent deployment, we implemented a fixed-effects logistic regression model in `scripts/03_infer_v2.py`. The binary outcome variable represented current deployment (Q3 = "We ARE deploying them now"), with responses to Q1, Q2, and Q4-Q10 as predictors (one-hot encoded with first level dropped). Prior to modeling, we checked for multicollinearity using Variance Inflation Factors (VIFs). Model results were reported as odds ratios with 95% confidence intervals and visualized in a forest plot.
 
 ## 2.5 Qualitative Analysis (Q11)
 
-Eleven respondents provided free-text responses to Q11. These responses were extracted and analyzed through manual thematic analysis to identify recurring concerns, suggestions, or perspectives. Due to the small sample size, these qualitative insights were treated as illustrative rather than representative, providing context and nuance to the quantitative findings. Key themes were identified and representative quotes selected to illustrate each theme, with care taken to remove any potentially identifying information.
+Eleven respondents provided free-text responses to Q11. These responses were analyzed through manual thematic analysis to identify recurring concerns, suggestions, or perspectives. Due to the small sample size (n=11), these qualitative insights were treated as illustrative rather than representative, providing context and nuance to the quantitative findings. Key themes were identified and representative quotes selected to illustrate each theme, with care taken to remove any potentially identifying information. No further scripting or automation was performed for Q11 analysis.
 
 # 3. Results
 
 ## 3.1 Response Distributions and Overall Sentiments
 
-Figure 1 presents the distribution of responses for all ten survey questions. Several notable patterns emerged:
+Figure 1 (see Supplementary Figure S2) presents the distribution of responses for all ten survey questions. Several notable patterns emerged:
 
-![Figure 1: Distribution of responses for all survey questions.](../figs/all_questions_grid.png)
+[Figure 1 is available in the Supplementary Figures & Tables section.]
 
 **Timeline Perceptions**: The most common view on AI replacing programmers (Q1) was that this is "Already happening for simple tasks" (44%), followed by "5-10 years for most programming tasks" (29%). Few respondents believed that "creativity can't be automated" (12%) or that "machines will write 99% of code by 2030" (11%).
 
@@ -118,9 +112,9 @@ These distributions paint a nuanced picture: respondents acknowledge AI's growin
 
 ## 3.2 Associations Between Perceptions
 
-Our analysis of associations between responses revealed several significant relationships after controlling for multiple comparisons. Figure 2 presents a heatmap of Cramér's V values for all question pairs.
+Our analysis of associations between responses revealed several significant relationships after controlling for multiple comparisons. Figure 2 (see Supplementary Figure S3) presents a heatmap of Cramér's V values for all question pairs.
 
-![Figure 2: Heatmap of Cramér's V values for all question pairs.](../figs/cramers_v_heatmap.png)
+[Figure 2 is available in the Supplementary Figures & Tables section.]
 
 The strongest associations (Cramér's V > 0.3, indicating medium to large effect sizes) were observed between:
 
@@ -134,7 +128,9 @@ The strongest associations (Cramér's V > 0.3, indicating medium to large effect
 
 5. **Ethics and Future Roles (Q9-Q10)**: Ethical perspectives on AI agents correlated with views on the future role of programmers.
 
-The mosaic plot of Q1 (timeline) by Q3 (deployment) in Supplementary Figure S1 illustrates a key finding: respondents who believed AI replacement is "Already happening for simple tasks" were significantly more likely to report current deployment of AI agents. This suggests that firsthand experience with agent deployment may influence perceptions of broader industry trends, or vice versa.
+The mosaic plot of Q1 (timeline) by Q3 (deployment) is shown in Supplementary Figure S1.
+
+[Supplementary Figure S1: Mosaic plot of Q1 by Q3.]
 
 These associations highlight how perceptions of AI agents form interconnected belief systems rather than isolated opinions, with views on technical capabilities, ethical frameworks, and governance models mutually reinforcing each other.
 
@@ -158,9 +154,9 @@ The clustering highlighted how individual questions that might seem contradictor
 
 ## 3.4 Predictors of Agent Deployment
 
-The logistic regression analysis identified several significant predictors of current AI agent deployment (Figure 4). After controlling for other factors, respondents were significantly more likely to report current deployment if they:
+The logistic regression analysis identified several significant predictors of current AI agent deployment (Figure 4; see Supplementary Figure S4). After controlling for other factors, respondents were significantly more likely to report current deployment if they:
 
-![Figure 4: Forest plot of odds ratios for current AI agent deployment.](../figs/logit_forest_plot.png)
+[Figure 4 is available in the Supplementary Figures & Tables section.]
 
 1. Believed AI replacement is "Already happening for simple tasks" (OR = 3.2, 95% CI: 1.4-7.3) or "Machines will write 99% of code by 2030" (OR = 4.1, 95% CI: 1.6-10.4), compared to believing creativity can't be automated.
 
@@ -176,9 +172,9 @@ Conversely, respondents were significantly less likely to report current deploym
 
 2. Believed developers "Frequently misrepresent capabilities" (OR = 0.4, 95% CI: 0.2-0.9).
 
-For a clearer view of the significant predictors, Figure 4b isolates only those factors with p < 0.05, showing their relative importance.
+For a clearer view of the significant predictors, Figure 4b (see Supplementary Figure S5) isolates only those factors with p < 0.05, showing their relative importance.
 
-![Figure 4b: Significant predictors of current AI agent deployment (p < 0.05).](../figs/logit_forest_plot_significant.png)
+[Figure 4b is available in the Supplementary Figures & Tables section.]
 
 These findings suggest that both technical perspectives (views on AI timeline and capabilities) and organizational factors (attitudes toward regulation and responsibility) influence deployment decisions. The significant negative association with regulatory concerns highlights the importance of clear compliance frameworks in enabling adoption.
 
@@ -186,7 +182,7 @@ Multicollinearity checks confirmed acceptable Variance Inflation Factors (<5) fo
 
 ## 3.5 Qualitative Insights from Q11
 
-The free-text responses from Q11 (n=11) revealed several recurring themes that added nuance to the quantitative findings:
+The free-text responses from Q11 (n=11) revealed several recurring themes that added nuance to the quantitative findings. Analysis was performed manually, and no further scripting or automation was used due to the small sample size.
 
 1. **Governance Challenges**: Multiple respondents mentioned the need for clearer regulatory frameworks and industry standards for AI agents, particularly regarding accountability when agents operate across organizational boundaries.
 
@@ -227,14 +223,7 @@ The predictive modeling results highlight how technical, organizational, and eth
 Several limitations should be considered when interpreting these findings:
 
 1. **Sample Characteristics**: With 126 respondents and limited demographic information, we cannot claim representativeness for the broader technology sector or general population. The sample likely overrepresents individuals with interest in AI and technology.
-
-2. **Survey Instrument**: The nominal response options limit nuanced expression compared to Likert scales or open-ended responses. The "No opinion" option, while preventing forced responses, complicates interpretation since it could represent unfamiliarity, ambivalence, or true neutrality.
-
-3. **Cross-sectional Design**: This study provides a snapshot of perceptions at a specific moment. Given the rapid pace of AI advancement, these views may evolve quickly.
-
-4. **Limited Qualitative Data**: With only 11 free-text responses, the qualitative insights should be considered illustrative rather than exhaustive or representative.
-
-5. **Potential Confounding Variables**: Without richer demographic or organizational data, we cannot control for factors like company size, industry, technical expertise, or prior exposure to AI systems that might influence perceptions.
+2. **Region Inference**: Region was inferred from timezone metadata, which is a coarse proxy and may be inaccurate due to VPN use, travel, or shared infrastructure.
 
 ## 4.4 Future Research Directions
 
@@ -354,10 +343,20 @@ Seeber, I., Bittner, E., Briggs, R. O., de Vreede, G. J., De Vreede, T., Elkins,
 
 **Supplementary Figure S1**: Mosaic Plot Q1 × Q3 (Relationship between AI replacement timeline perceptions and deployment status)
 
-![Supplementary Figure S1: Mosaic Plot Q1 × Q3.](../figs/Q1xQ3_mosaic.png)
+![Supplementary Figure S1: Mosaic Plot Q1 × Q3.](../figs/Q1xQ3_mosaic_supplementary_s1.png)
 
-The mosaic plot visualizes how perceptions of AI replacement timelines (Q1, horizontal axis) relate to current deployment status (Q3, vertical axis). The width of each column represents the proportion of responses for each Q1 category, while the height of each cell within a column represents the proportion of Q3 responses within that Q1 group. Labels have been abbreviated for clarity, with text backgrounds added to prevent overlap in the visualization. This plot illustrates that respondents who believe AI replacement is "Already happening" are more likely to report current deployment of AI agents, suggesting firsthand experience may influence broader perceptions.
+**Supplementary Figure S2**: Distribution of responses for all survey questions (Grid of bar charts)
 
-**Supplementary Figure S2**: K-Modes Elbow Plot (Justification for selecting k=3 clusters)
+![Supplementary Figure S2: Distribution of responses for all survey questions.](../figs/all_questions_grid_improved.png)
 
-![Supplementary Figure S2: K-Modes Elbow Plot.](../results/kmodes_elbow.png)
+**Supplementary Figure S3**: Heatmap of Cramér's V values for all question pairs
+
+![Supplementary Figure S3: Heatmap of Cramér's V values for all question pairs.](../figs/cramers_v_heatmap_figure2.png)
+
+**Supplementary Figure S4**: Forest plot of odds ratios for current AI agent deployment
+
+![Supplementary Figure S4: Forest plot of odds ratios for current AI agent deployment.](../figs/logit_forest_plot_figure4.png)
+
+**Supplementary Figure S5**: Significant predictors of current AI agent deployment (p < 0.05)
+
+![Supplementary Figure S5: Significant predictors of current AI agent deployment (p < 0.05).](../figs/logit_forest_plot_significant_only.png)

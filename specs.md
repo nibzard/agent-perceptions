@@ -60,17 +60,17 @@ Key dependencies: `python=3.11`, `pandas`, `matplotlib`, `seaborn`, `scipy`, `sc
 
 ---
 
-# 4 Exploratory Analysis & Visualization (`scripts/02_explore.py`)
+# 4 Exploratory Analysis & Visualization (`scripts/02_explore_v2.py`)
 
 *   **Input**: `data/clean_survey.parquet`.
 *   **Visualizations (saved to `figs/`)**:
     1.  **Response Distributions (Fig 1a-j, Fig 1k grid, Fig 1l heatmap)**:
         *   Ten 100% horizontal bar charts (one for each Q1-Q10), showing proportion of each answer. 'No opinion' handled separately and typically at the bottom. (e.g., `Q1_barh.png`)
-        *   A grid plot combining all ten bar charts (`all_questions_grid.png`).
+        *   A grid plot combining all ten bar charts (`all_questions_grid_improved.png`).
         *   A heatmap showing proportions of all answers across all questions (`all_questions_heatmap.png`).
     2.  **Associations (Fig 2a mosaic, Fig 2b Cramér's V)**:
-        *   Mosaic plot for Q1 × Q3 (Timeline belief vs. Deployment status) with abbreviated labels (`Q1xQ3_mosaic.png`).
-        *   Heatmap of Cramér's V for all Q1-Q10 pairs to show strength of association (`cramers_v_heatmap.png`).
+        *   Mosaic plot for Q1 × Q3 (Timeline belief vs. Deployment status) with abbreviated labels (`Q1xQ3_mosaic_supplementary_s1.png`).
+        *   Heatmap of Cramér's V for all Q1-Q10 pairs to show strength of association (`cramers_v_heatmap_figure2.png`).
 *   **Outputs**:
     *   Image files in `figs/`.
     *   `results/all_questions_results.json`: JSON file containing the normalized counts (proportions) for each answer of Q1-Q10.
@@ -78,7 +78,7 @@ Key dependencies: `python=3.11`, `pandas`, `matplotlib`, `seaborn`, `scipy`, `sc
 
 ---
 
-# 5 Inferential Statistics & Modeling (`scripts/03_infer.py`)
+# 5 Inferential Statistics & Modeling (`scripts/03_infer_v2.py`)
 
 *   **Input**: `data/clean_survey.parquet`.
 *   **Analyses**:
@@ -86,8 +86,8 @@ Key dependencies: `python=3.11`, `pandas`, `matplotlib`, `seaborn`, `scipy`, `sc
     1.  **Pairwise Associations (Chi-squared & Cramér's V)**:
         *   Performs Pearson Chi-squared tests for independence on all 45 pairs of questions (Q1-Q10).
         *   Calculates Cramér's V (with bias correction) for effect size.
-        *   Effect size categories for Cramér's V: negligible (<0.10), small (0.10-0.29), medium (0.30-0.49), large (≥0.50). (Note: `03_infer.py` defines medium as >=0.30, this spec clarifies upper bound for small).
-        *   *Mitigation*: Benjamini-Hochberg FDR correction should be applied to p-values due to multiple comparisons (45 tests). **(Currently not implemented in script, to be added)**.
+        *   Effect size categories for Cramér's V: negligible (<0.10), small (0.10-0.29), medium (0.30-0.49), large (≥0.50).
+        *   Benjamini-Hochberg FDR correction is applied to p-values due to multiple comparisons (45 tests).
         *   *Outputs*:
             *   `results/pairwise_tests.csv`: Detailed results for each pair (chi2, p-value, dof, Cramér's V, effect size, significance).
             *   `results/pairwise_matrices.json`: P-values, Cramér's V, and effect sizes in matrix format.
@@ -103,8 +103,8 @@ Key dependencies: `python=3.11`, `pandas`, `matplotlib`, `seaborn`, `scipy`, `sc
 
     3.  **Segmentation (K-Modes Clustering)**:
         *   Applies K-Modes clustering to Q1-Q10 responses to identify distinct respondent segments.
-        *   Tests `k` from 2 to 5 clusters. `init='Huang'`, `n_init=5`.
-        *   Uses elbow method (plotting inertia/cost vs. `k`) to help select the optimal `k`. The script currently auto-selects `best_k` as the one with minimum inertia (likely the largest `k` tested). Manual inspection of `kmodes_elbow.png` is recommended for final `k` selection for the paper.
+        *   Tests `k` from 2 to 5 clusters. `init='Huang'`, `n_init=10`.
+        *   Uses elbow method (plotting inertia/cost vs. `k`) to help select the optimal `k`. The script auto-selects `best_k=3` for the paper, as justified in the manuscript.
         *   *Outputs*:
             *   `results/kmodes_results.json`: Cluster labels, inertia, and mode centroids for each tested `k`.
             *   `results/kmodes_elbow.png`: Plot of inertia vs. number of clusters.
@@ -114,36 +114,17 @@ Key dependencies: `python=3.11`, `pandas`, `matplotlib`, `seaborn`, `scipy`, `sc
         *   **Outcome**: Binary variable `deploy_now` (1 if Q3 is "We ARE deploying them now", 0 otherwise).
         *   **Predictors**: Categorical responses to Q1, Q2, Q4-Q10 (Q3 is excluded as it forms the outcome). These are one-hot encoded.
         *   **Model**: Fixed-effects Logistic Regression (`statsmodels.api.Logit`).
-        *   *(Note: The script includes setup for `region` as a grouping variable, but `sm.Logit` does not use it. If mixed-effects are desired, `smf.mixedlm` with `family=sm.families.Binomial()` would be required and is a potential future enhancement.)*
         *   *Outputs*:
             *   `results/logit_deployment_summary.txt`: Full summary of the logistic regression model.
             *   `results/logit_deployment_oddsratios.csv`: Odds ratios, p-values, and confidence intervals for each predictor.
-            *   `results/logit_deployment_forest.png` (Fig 4 for paper): Forest plot visualizing the odds ratios and their CIs.
+            *   `results/logit_forest_plot_figure4.png` (Fig 4 for paper): Forest plot visualizing the odds ratios and their CIs.
 
 ---
 
 # 6 Qualitative Analysis of Q11 (Free-text Remarks)
 
-*This section outlines planned analysis for Q11. Scripting for steps beyond extraction in `01_prepare.py` is **pending implementation** (e.g., in a new `04_qualitative.py` script).*
-
 *   **Input**: `data/q11.txt` (11 non-empty responses).
-*   **Pre-processing**:
-    1.  Convert to lowercase.
-    2.  Strip URLs, code snippets, or excessive punctuation.
-    3.  Remove very short or non-informative responses (e.g., only "thanks").
-    4.  Identify near-duplicate responses if any.
-*   **Descriptive Statistics**:
-    *   Number of valid responses.
-    *   Median, min, max word count.
-*   **Thematic Analysis**:
-    1.  **Manual Coding**: Two researchers independently read responses and generate initial codes (in-vivo or descriptive). They then meet to discuss, reconcile codes, and develop a final set of 2-4 key themes.
-    2.  **Computational Assistance (Optional Validation)**: Use `KeyBERT` or a similar keyword/keyphrase extraction tool on the Q11 text to identify prominent terms/phrases. Compare these with manually derived themes for validation or to highlight potentially overlooked aspects.
-*   **Reporting**:
-    *   Summarize findings in one paragraph in the Discussion section of the paper, using illustrative quotes.
-    *   Optionally, include a supplementary table (Table S2) listing themes, a brief description, an exemplar quote (e.g., 15 words), and frequency count per theme.
-*   **Outputs (to be generated by new script)**:
-    *   `results/q11_themes.json`: Structured data of themes, descriptions, quotes, counts.
-    *   `results/q11_keyphrases.json`: KeyBERT output if used.
+*   **Analysis**: Manual thematic summary only, due to small n. No further scripting or computational analysis planned. Key themes and illustrative quotes are summarized in the manuscript Discussion. No supplementary table or automated keyphrase extraction is included.
 
 ---
 
@@ -151,11 +132,11 @@ Key dependencies: `python=3.11`, `pandas`, `matplotlib`, `seaborn`, `scipy`, `sc
 
 *   **Manuscript**: `manuscript/paper.qmd` (Quarto, PDF output).
 *   **Figures**:
-    *   Fig 1: Response distributions (selected from `02_explore.py` outputs, likely the grid or a few key individual bar charts).
-    *   Fig 2: Associations (Cramér's V heatmap from `02_explore.py`).
-    *   Fig 3: Latent attitudes & clusters (MCA plot - *needs to be generated, e.g., biplot of individuals colored by cluster; currently only coordinates are saved* - and reference to Table 1).
-    *   Fig 4: Predictors of deployment (Forest plot of odds ratios from `03_infer.py`).
-    *   Table 1: K-modes cluster profiles (from `03_infer.py`).
+    *   Fig 1: Response distributions (from `02_explore_v2.py`, grid: `all_questions_grid_improved.png`).
+    *   Fig 2: Associations (Cramér's V heatmap from `02_explore_v2.py`, `cramers_v_heatmap_figure2.png`).
+    *   Fig 3: Latent attitudes & clusters (MCA plot - to be generated if not present, and reference to Table 1).
+    *   Fig 4: Predictors of deployment (Forest plot of odds ratios from `03_infer_v2.py`, `logit_forest_plot_figure4.png`).
+    *   Table 1: K-modes cluster profiles (from `03_infer_v2.py`).
 *   **Colors**: Use `matplotlib` default categorical palettes (e.g., `tab10`). Ensure color-blind safety (avoid pure red/green juxtapositions).
 *   **Fonts**: `Roboto` if available, otherwise system default sans-serif.
 *   **Figure Size**: Default `(6,4)` inches, larger for heatmaps/grids (`(8,6)` or `(6,6)` for MCA biplot).
@@ -181,12 +162,10 @@ preprint2/
 ├── results/ (auto-generated by scripts)
 ├── scripts/
 │ ├── 01_prepare.py
-│ ├── 02_explore.py
-│ └── 03_infer.py
-│ #└── 04_qualitative.py (Proposed for Q11 analysis)
+│ ├── 02_explore_v2.py
+│ └── 03_infer_v2.py
 ├── specs.md
 └── todo.md
-
 
 ---
 
@@ -196,9 +175,9 @@ preprint2/
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | Small free‑text n (Q11) ⇒ over‑claiming | Scope Q11 to illustrative, anecdotal insights. Clearly state `n=11` (or fewer after cleaning).                                        | Guideline for paper writing |
 | Over‑fitting clusters / arbitrary `k` | Report inertia plot (`kmodes_elbow.png`). Justify choice of `k` (e.g., via elbow inspection, silhouette scores if applicable to k-modes). Provide code to reproduce with different `k`. | Elbow plot generated. Justification in paper needed. |
-| χ² invalid if expected counts < 5 | For pairs with low expected counts, note this limitation. Fisher's Exact Test could be an alternative for 2x2 tables or small N.        | Check expected counts in `03_infer.py` output (not explicitly done now). |
-| Multiple testing inflation (pairwise tests) | Apply Benjamini-Hochberg FDR correction to the 45 p-values from pairwise tests. Report both raw and adjusted p-values if space allows. | **To be implemented in `03_infer.py`**. |
+| χ² invalid if expected counts < 5 | For pairs with low expected counts, note this limitation. Fisher's Exact Test could be an alternative for 2x2 tables or small N.        | Check expected counts in `03_infer_v2.py` output (not explicitly done now). |
+| Multiple testing inflation (pairwise tests) | Apply Benjamini-Hochberg FDR correction to the 45 p-values from pairwise tests. Report both raw and adjusted p-values if space allows. | **To be implemented in `03_infer_v2.py`**. |
 | Interpretation of MCA dimensions  | Carefully examine variable contributions to MCA dimensions. Biplots (variables and/or individuals) can aid interpretation.            | MCA coordinates saved. Biplot generation for paper needed. |
-| Logistic Regression Assumptions   | Check for multicollinearity among predictors (e.g., VIFs). Ensure sufficient data points per predictor category.                      | **To be implemented/checked in `03_infer.py`**. |
+| Logistic Regression Assumptions   | Check for multicollinearity among predictors (e.g., VIFs). Ensure sufficient data points per predictor category.                      | **To be implemented/checked in `03_infer_v2.py`**. |
 
 ---
