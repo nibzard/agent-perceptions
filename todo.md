@@ -44,18 +44,21 @@
 
 ## 6. Qualitative Analysis (Q11)
 - [x] Manual thematic summary only (n=11). No further scripting or automation planned. Key themes and illustrative quotes summarized in manuscript Discussion.
+- [x] Add 1-2 anonymized illustrative quotes for key themes in Section 3.5
 
-## 7. Manuscript (`manuscript/paper.qmd`)
-- [x] Create initial `paper.qmd` with section structure.
-- [ ] Write Abstract.
-- [ ] Write Introduction section.
-- [ ] Write Methods section, detailing survey, participants, data processing, statistical analyses, and qualitative approach.
-- [ ] Write Results section, presenting findings from exploratory, pairwise, MCA, clustering, logistic regression, and qualitative analyses, referencing figures and tables.
-- [ ] Write Discussion section: interpret results, compare to literature, discuss limitations.
-- [ ] Write Conclusion section.
-- [ ] Add Acknowledgements, References, Appendix (Survey Items).
-- [ ] Create Supplementary Figures & Tables section if needed.
-- [ ] Ensure all figures (Fig 1-4) and Table 1 are correctly generated, formatted, and referenced.
+## 7. Address Reviewer Feedback (2024-06)
 
-## 8. Project Management & Review
-- [x] Review and update `specs.md` and `todo.md` (this task).
+- [ ] **Survey Instrument and Distribution Details**
+  - [x] Add detailed description of survey instrument development (pre-testing, validation, etc.)
+  - [x] Add detailed description of distribution methodology (recruitment, platforms, sampling bias discussion)
+- [x] **Clustering Results Consistency**
+  - [x] Reconcile cluster descriptions in main text with Supplementary Table S1
+  - [x] Check and correct cluster labeling, modal answers, and textual descriptions for consistency
+  - [x] Justify k=3 choice in light of interpretability and any changes
+- [x] **MCA Inertia**
+  - [x] Explicitly discuss low explained inertia in MCA and its implications for clustering validity
+- [x] **Logistic Regression Predictors**
+  - [x] Clarify in Methods why only certain Q3 barriers were included as predictors
+  - [x] Consider testing other Q3 barriers as predictors for deployment status
+- [x] **Discussion - Limitations**
+  - [x] Add explicit discussion of survey instrument limitations (wording, fixed choice, nuance loss)

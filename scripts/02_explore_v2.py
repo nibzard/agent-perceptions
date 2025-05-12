@@ -93,11 +93,12 @@ print("Individual bar charts generated.")
 # --- 1b. Grid of 10 bar charts (Q1-Q10) in one image ---
 # This is the plot that likely corresponds to Figure 1 in the paper.
 print("Generating grid of bar charts (corresponds to paper's Figure 1)...")
-fig, axes = plt.subplots(2, 5, figsize=FIGSIZE_GRID) # Use updated FIGSIZE_GRID
-axes_flat = axes.flatten() # Flatten for easier iteration
+# Change layout to 5 rows x 2 columns (2 charts in width)
+fig, axes = plt.subplots(5, 2, figsize=(16, 22))  # Adjusted size for 5x2 grid
+axes_flat = axes.flatten()  # Flatten for easier iteration
 
 for idx, q_col_name in enumerate(QUESTIONS):
-    if idx >= len(axes_flat): # Should not happen with 2x5 grid for 10 questions
+    if idx >= len(axes_flat):  # Should not happen with 5x2 grid for 10 questions
         break
     ax = axes_flat[idx]
 
@@ -118,12 +119,12 @@ for idx, q_col_name in enumerate(QUESTIONS):
 
     counts.plot.barh(ax=ax, color=PALETTE[:len(counts)], edgecolor='grey')
     ax.set_xlabel('Proportion', fontsize=10)
-    ax.set_title(f'Q{q_col_name}', fontsize=13) # Slightly larger title
-    ax.tick_params(axis='y', labelsize=9) # Slightly larger y-ticks
+    ax.set_title(f'Q{q_col_name}', fontsize=13)  # Slightly larger title
+    ax.tick_params(axis='y', labelsize=9)  # Slightly larger y-ticks
     ax.tick_params(axis='x', labelsize=9)
 
     max_val = counts.max()
-    x_max_grid = min(1.0, max_val * 1.25) # Increased padding
+    x_max_grid = min(1.0, max_val * 1.25)  # Increased padding
     ax.set_xlim(0, x_max_grid)
 
     for i, v in enumerate(counts):
@@ -134,13 +135,17 @@ for idx, q_col_name in enumerate(QUESTIONS):
             ax.text(v + (x_max_grid * 0.02), i, f'{v:.1%}', va='center', fontsize=8)
 
     labels = [item.get_text() for item in ax.get_yticklabels()]
-    wrapped_labels = ['\n'.join(textwrap.wrap(label, width=30)) for label in labels] # Adjusted wrap width
+    wrapped_labels = ['\n'.join(textwrap.wrap(label, width=30)) for label in labels]  # Adjusted wrap width
     ax.set_yticklabels(wrapped_labels)
 
-plt.subplots_adjust(wspace=0.7, hspace=0.4) # Adjusted spacing for better layout
-plt.suptitle('Distribution of responses for all survey questions.', fontsize=18, y=0.99) # Updated title to match paper
+# Hide any unused subplots (if any)
+for j in range(len(QUESTIONS), len(axes_flat)):
+    axes_flat[j].axis('off')
+
+plt.subplots_adjust(wspace=0.7, hspace=0.7)  # Adjusted spacing for better layout
+plt.suptitle('Distribution of responses for all survey questions.', fontsize=18, y=0.99)  # Updated title to match paper
 plt.tight_layout(rect=[0, 0.02, 1, 0.97])
-plt.savefig(FIGS_DIR / 'all_questions_grid_improved.png', dpi=300) # Save as new file to compare
+plt.savefig(FIGS_DIR / 'all_questions_grid_improved.png', dpi=300)  # Save as new file to compare
 plt.close(fig)
 print("Grid of bar charts saved as 'all_questions_grid_improved.png'. This should be Figure 1 in the paper.")
 

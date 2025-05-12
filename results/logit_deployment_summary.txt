@@ -2,7 +2,7 @@
 ==========================================================================================================================
 Model:                                   Logit                               Method:                              MLE     
 Dependent Variable:                      deploy_now                          Pseudo R-squared:                    0.204   
-Date:                                    2025-05-12 19:32                    AIC:                                 165.9310
+Date:                                    2025-05-12 21:14                    AIC:                                 165.9310
 No. Observations:                        126                                 BIC:                                 242.5107
 Df Model:                                26                                  Log-Likelihood:                      -55.966 
 Df Residuals:                            99                                  LL-Null:                             -70.300 
