@@ -1,0 +1,185 @@
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Xi et~al.(2023)Xi, Chen, Guo, He, Ding, Hong, Zhang, Wang, Jin, Zhou,
+  Zheng, Fan, Wang, Xiong, Zhou, Wang, Jiang, Zou, Liu, Yin, Dou, Weng, Cheng,
+  Zhang, Qin, Zheng, Qiu, Huang, and Gui]{Xi2023RisePotential}
+Zhiheng Xi, Wenxiang Chen, Xin Guo, Wei He, Yiwen Ding, Boyang Hong, Ming
+  Zhang, Junzhe Wang, Senjie Jin, Enyu Zhou, Rui Zheng, Xiaoran Fan, Xiao Wang,
+  Limao Xiong, Yuhao Zhou, Weiran Wang, Changhao Jiang, Yicheng Zou, Xiangyang
+  Liu, Zhangyue Yin, Shihan Dou, Rongxiang Weng, Wensen Cheng, Qi~Zhang,
+  Wenjuan Qin, Yongyan Zheng, Xipeng Qiu, Xuanjing Huang, and Tao Gui.
+\newblock The rise and potential of large language model based agents: A
+  survey, 2023.
+\newblock URL \url{http://arxiv.org/abs/2309.07864}.
+
+\bibitem[Shen and Yang(2025)]{shen2025}
+Minjie Shen and Qikai Yang.
+\newblock From {{Mind}} to {{Machine}}: {{The Rise}} of {{Manus AI}} as a
+  {{Fully Autonomous Digital Agent}}, May 2025.
+
+\bibitem[Liu et~al.(2025)Liu, Li, Zhang, Wang, He, Hong, Liu, Zhang, Song, Zhu,
+  Cheng, Wang, Wang, Luo, Jin, Zhang, Liu, Chen, Zhang, Yu, Shi, Li, Wu, Teng,
+  Jia, Xu, Xiang, Lin, Liu, Liu, Su, Sun, Berseth, Nie, Foster, Ward, Wu, Gu,
+  Zhuge, Tang, Wang, You, Wang, Pei, Yang, Qi, and
+  Wu]{Liu2025AdvancesChallenges}
+Bang Liu, Xinfeng Li, Jiayi Zhang, Jinlin Wang, Tanjin He, Sirui Hong,
+  Hongzhang Liu, Shaokun Zhang, Kaitao Song, Kunlun Zhu, Yuheng Cheng, Suyuchen
+  Wang, Xiaoqiang Wang, Yuyu Luo, Haibo Jin, Peiyan Zhang, Ollie Liu, Jiaqi
+  Chen, Huan Zhang, Zhaoyang Yu, Haochen Shi, Boyan Li, Dekun Wu, Fengwei Teng,
+  Xiaojun Jia, Jiawei Xu, Jinyu Xiang, Yizhang Lin, Tianming Liu, Tongliang
+  Liu, Yu~Su, Huan Sun, Glen Berseth, Jianyun Nie, Ian Foster, Logan Ward,
+  Qingyun Wu, Yu~Gu, Mingchen Zhuge, Xiangru Tang, Haohan Wang, Jiaxuan You,
+  Chi Wang, Jian Pei, Qiang Yang, Xiaoliang Qi, and Chenglin Wu.
+\newblock Advances and challenges in foundation agents: From brain-inspired
+  intelligence to evolutionary, collaborative, and safe systems, 2025.
+\newblock URL \url{http://arxiv.org/abs/2504.01990}.
+
+\bibitem[Brynjolfsson and McAfee(2014)]{Brynjolfsson2014}
+Erik Brynjolfsson and Andrew McAfee.
+\newblock \emph{The Second Machine Age{\string:} Work, Progress, and Prosperity
+  in a Time of Brilliant Technologies}.
+\newblock W.\,W. Norton \& Company, New York, 2014.
+\newblock ISBN 978-0393239355.
+
+\bibitem[Wrona et~al.(2023)Wrona, Skibińska, and Ganzha]{Wrona2023}
+Adam Wrona, Julia Skibińska, and Maria Ganzha.
+\newblock Why aren't agent-based systems widely used in industry? a systematic
+  review of barriers to adoption.
+\newblock \emph{Autonomous Agents and Multi-Agent Systems}, 37\penalty0
+  (1):\penalty0 4, 2023.
+\newblock \doi{TBD}.
+
+\bibitem[Liu et~al.(2024{\natexlab{a}})Liu, Lo, Lu, Zhu, Zhao, Xu, Harrer, and
+  Whittle]{liu2024}
+Yue Liu, Sin~Kit Lo, Qinghua Lu, Liming Zhu, Dehai Zhao, Xiwei Xu, Stefan
+  Harrer, and Jon Whittle.
+\newblock Agent {{Design Pattern Catalogue}}: {{A Collection}} of
+  {{Architectural Patterns}} for {{Foundation Model}} based {{Agents}}, June
+  2024{\natexlab{a}}.
+
+\bibitem[Liang et~al.(2024)Liang, Yang, and Myers]{ICSESurvey2024}
+Jenny~T. Liang, Chenyang Yang, and Brad~A. Myers.
+\newblock A large-scale survey on the usability of ai programming
+  assistants{\string:} successes and challenges.
+\newblock In \emph{Proceedings of the 46th International Conference on Software
+  Engineering (ICSE ’24)}, pages 1302--1313, 2024.
+\newblock \doi{10.1145/3597503.3608128}.
+
+\bibitem[Khemka and Houck(2024)]{KhemkaHouck2024}
+Mansi Khemka and Brian Houck.
+\newblock Beyond the tool{\string:} understanding developer attitudes towards
+  ai assistants in software engineering practice.
+\newblock \emph{IEEE Transactions on Software Engineering}, 50\penalty0
+  (2):\penalty0 189--207, 2024.
+\newblock \doi{TBD}.
+
+\bibitem[Noy and Zhang(2023)]{NoyZhang2023}
+Shakked Noy and Whitney Zhang.
+\newblock Experimental evidence on the productivity effects of generative
+  artificial intelligence.
+\newblock \emph{Science}, 381\penalty0 (6608):\penalty0 851--857, 2023.
+\newblock \doi{10.1126/science.adh2586}.
+
+\bibitem[Hauptman et~al.(2022)Hauptman, Gu, and Jain]{Hauptman2022}
+A.~Hauptman, Y.~Gu, and S.~Jain.
+\newblock Designing adaptive autonomous agents for team collaboration{\string:}
+  task structure and human preferences for autonomy.
+\newblock In \emph{Proceedings of the ACM Conference on Computer-Supported
+  Cooperative Work and Social Computing (CSCW)}, pages 103--126, 2022.
+\newblock \doi{TBD}.
+
+\bibitem[Liu et~al.(2024{\natexlab{b}})Liu, Wong, and Park]{LiuCHI2024}
+Zihan Liu, L.~Wong, and S.~Park.
+\newblock Cultural differences in public perceptions of ai conversational
+  agents{\string:} a comparative analysis of social media discourse in the us
+  and china.
+\newblock In \emph{Proceedings of the CHI Conference on Human Factors in
+  Computing Systems}, pages 1--15, 2024{\natexlab{b}}.
+\newblock \doi{10.1145/3613904.3642840}.
+
+\bibitem[Brown et~al.(2025)Brown, Martinez, and Singh]{Brown2025}
+T.~Brown, C.~Martinez, and A.~Singh.
+\newblock Real-time feedback from autonomous systems increases trust in
+  algorithmic evaluation.
+\newblock \emph{ACM Transactions on Computer-Human Interaction}, 32\penalty0
+  (1):\penalty0 1--24, 2025.
+\newblock \doi{TBD}.
+
+\bibitem[Davenport and Ronanki(2018)]{DavenportRonanki2018}
+Thomas~H. Davenport and Rajeev Ronanki.
+\newblock Artificial intelligence for the real world.
+\newblock \emph{Harvard Business Review}, 96\penalty0 (1):\penalty0 108--116,
+  2018.
+
+\bibitem[Frey and Osborne(2017)]{Frey2017}
+Carl~Benedikt Frey and Michael~A. Osborne.
+\newblock The future of employment{\string:} how susceptible are jobs to
+  computerisation?
+\newblock \emph{Technological Forecasting and Social Change}, 114:\penalty0
+  254--280, 2017.
+\newblock \doi{10.1016/j.techfore.2016.08.019}.
+
+\bibitem[Seeber et~al.(2020)Seeber, Bittner, Briggs, de~Vreede, De~Vreede,
+  Elkins, Maier, Merz, Oeste-Reiß, Randrup, Schwabe, and Söllner]{Seeber2020}
+Isabella Seeber, Eva Bittner, Robert~O. Briggs, Gert-Jan de~Vreede, Triparna
+  De~Vreede, Aaron Elkins, Ronald Maier, Alexander~B. Merz, Sarah Oeste-Reiß,
+  Nils Randrup, Gerhard Schwabe, and Matthias Söllner.
+\newblock Machines as teammates{\string:} a research agenda on ai in team
+  collaboration.
+\newblock \emph{Information \& Management}, 57\penalty0 (2):\penalty0 103174,
+  2020.
+\newblock \doi{10.1016/j.im.2019.103174}.
+
+\bibitem[Davenport and Kirby(2016)]{DavenportKirby2016}
+Thomas~H. Davenport and Julia Kirby.
+\newblock \emph{Only Humans Need Apply{\string:} Winners and Losers in the Age
+  of Smart Machines}.
+\newblock Harper Business, New York, 2016.
+\newblock ISBN 978-0062438614.
+
+\bibitem[Yang et~al.(2025)Yang, Chai, Song, Qi, Wen, Li, Liao, Hu, Lin, Chang,
+  Liu, Wen, Yu, and Zhang]{Yang2025SurveyAIprotocols}
+Yingxuan Yang, Huacan Chai, Yuanyi Song, Siyuan Qi, Muning Wen, Ning Li, Junwei
+  Liao, Haoyi Hu, Jianghao Lin, Gaowei Chang, Weiwen Liu, Ying Wen, Yong Yu,
+  and Weinan Zhang.
+\newblock A survey of ai agent protocols, 2025.
+\newblock URL \url{http://arxiv.org/abs/2504.16736}.
+
+\bibitem[Chan et~al.(2025)Chan, Wei, Huang, Rajkumar, Perrier, Lazar, Hadfield,
+  and Anderljung]{Chan2025Infrastructure}
+Alan Chan, Kevin Wei, Sihao Huang, Nitarshan Rajkumar, Elija Perrier, Seth
+  Lazar, Gillian~K. Hadfield, and Markus Anderljung.
+\newblock Infrastructure for ai agents, 2025.
+\newblock URL \url{http://arxiv.org/abs/2501.10114}.
+
+\bibitem[Schneider and Sunyaev(2016)]{SchneiderSunyaev2016}
+Stephan Schneider and Ali Sunyaev.
+\newblock Determinant factors of cloud-sourcing decisions{\string:} reflecting
+  on the it outsourcing literature in the era of cloud computing.
+\newblock \emph{Journal of Information Technology}, 31\penalty0 (1):\penalty0
+  1--31, 2016.
+\newblock \doi{10.1057/jit.2014.25}.
+
+\bibitem[Santoni~de Sio and van~den Hoven(2018)]{SantoniHoven2018}
+Filippo Santoni~de Sio and Jeroen van~den Hoven.
+\newblock Meaningful human control over autonomous systems{\string:} a
+  philosophical account.
+\newblock \emph{Frontiers in Robotics and AI}, 5:\penalty0 15, 2018.
+\newblock \doi{10.3389/frobt.2018.00015}.
+
+\bibitem[{Microsoft Corporation}(2024)]{Microsoft2024TaxonomyFailureModes}
+{Microsoft Corporation}.
+\newblock A taxonomy of failure modes in agentic ai systems.
+\newblock Technical report, Microsoft Corporation, April 2024.
+\newblock URL
+  \url{https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/Taxonomy-of-Failure-Mode-in-Agentic-AI-Systems-Whitepaper.pdf}.
+\newblock Authored by members of Microsoft’s AI Red Team, Committee on AI and
+  Research Ethics (AETHER) working groups, and other AI experts across
+  Microsoft.
+
+\end{thebibliography}

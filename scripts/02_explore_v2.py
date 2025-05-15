@@ -13,15 +13,15 @@ import textwrap
 
 # --- Config ---
 DATA_PATH = Path('data/clean_survey.parquet')
-FIGS_DIR = Path('figs')
-FIGS_DIR.mkdir(parents=True, exist_ok=True) # Ensure parent dirs are created
-RESULTS_DIR = Path('results')
-RESULTS_DIR.mkdir(parents=True, exist_ok=True) # Ensure parent dirs are created
-QUESTIONS = [str(i) for i in range(1, 11)] # Q1 to Q10
+FIGS_DIR = Path('manuscript/figs')  # Directory for saving figures
+FIGS_DIR.mkdir(parents=True, exist_ok=True)  # Ensure parent dirs are created
+RESULTS_DIR = Path('results')  # Directory for saving results
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)  # Ensure parent dirs are created
+QUESTIONS = [str(i) for i in range(1, 11)]  # Q1 to Q10
 PALETTE = sns.color_palette('pastel')
-FIGSIZE_SINGLE = (8, 5) # Slightly larger for individual plots
-FIGSIZE_GRID = (28, 12) # Increased size for better readability of the grid
-MCA_FIGSIZE = (6, 6) # Unused in this script, but kept for consistency if other plots are added
+FIGSIZE_SINGLE = (8, 5)  # Slightly larger for individual plots
+FIGSIZE_GRID = (28, 12)  # Increased size for better readability of the grid
+MCA_FIGSIZE = (6, 6)  # Unused in this script, but kept for consistency
 FONT_NAME = 'Roboto'
 
 # --- Font Setup ---
@@ -61,7 +61,9 @@ for q_col_name in QUESTIONS:
 
     counts = counts[::-1] # Invert for top-to-bottom display in barh
 
-    fig, ax = plt.subplots(figsize=(FIGSIZE_SINGLE[0], max(FIGSIZE_SINGLE[1], 0.6 * len(counts) + 1.5))) # Dynamic height
+    fig, ax = plt.subplots(
+        figsize=(FIGSIZE_SINGLE[0], max(FIGSIZE_SINGLE[1], 0.6 * len(counts) + 1.5))
+    )
 
     bars = counts.plot.barh(ax=ax, color=PALETTE[:len(counts)], edgecolor='grey')
     ax.set_xlabel('Proportion', fontsize=12)
@@ -93,8 +95,8 @@ print("Individual bar charts generated.")
 # --- 1b. Grid of 10 bar charts (Q1-Q10) in one image ---
 # This is the plot that likely corresponds to Figure 1 in the paper.
 print("Generating grid of bar charts (corresponds to paper's Figure 1)...")
-# Change layout to 5 rows x 2 columns (2 charts in width)
-fig, axes = plt.subplots(5, 2, figsize=(16, 22))  # Adjusted size for 5x2 grid
+# Adjusted size for 5x2 grid
+fig, axes = plt.subplots(5, 2, figsize=(16, 22))
 axes_flat = axes.flatten()  # Flatten for easier iteration
 
 for idx, q_col_name in enumerate(QUESTIONS):
@@ -142,7 +144,8 @@ for idx, q_col_name in enumerate(QUESTIONS):
 for j in range(len(QUESTIONS), len(axes_flat)):
     axes_flat[j].axis('off')
 
-plt.subplots_adjust(wspace=0.7, hspace=0.7)  # Adjusted spacing for better layout
+# Adjusted spacing for better layout
+plt.subplots_adjust(wspace=0.7, hspace=0.7)
 plt.suptitle('Distribution of responses for all survey questions.', fontsize=18, y=0.99)  # Updated title to match paper
 plt.tight_layout(rect=[0, 0.02, 1, 0.97])
 plt.savefig(FIGS_DIR / 'all_questions_grid_improved.png', dpi=300)  # Save as new file to compare
@@ -268,8 +271,11 @@ else:
         return {'color': color_map.get(q1_answer_from_key, '#dddddd'), 'edgecolor': 'white'}
 
     fig, ax = plt.subplots(figsize=(10, 7)) # Slightly larger
-    mosaic(mosaic_df_q1q3, ['1_mapped', '3_mapped'], ax=ax, properties=get_mosaic_props, gap=0.02,
-           title='') # Title is set below to match paper's Figure S1
+    # Suppress internal labels by passing a labelizer that returns an empty string
+    mosaic(
+        mosaic_df_q1q3, ['1_mapped', '3_mapped'], ax=ax, properties=get_mosaic_props, gap=0.02,
+        title='', labelizer=lambda key: ''
+    )
 
     # Set title and labels explicitly to match Supplementary Figure S1 if possible
     # The mosaic plot in the paper has "Mosaic Plot: Q1 x Q3 (Pastel Colors, Abbreviated Labels)" as title
@@ -329,15 +335,18 @@ for q_row_num_str in QUESTIONS:
 
 fig, ax = plt.subplots(figsize=(8, 7)) # Adjusted size
 sns.heatmap(
-    cramers_matrix.astype(float), # Ensure float type for heatmap
+    cramers_matrix.astype(float),  # Ensure float type for heatmap
     annot=True,
     fmt='.2f',
     cmap='Blues',
     ax=ax,
     cbar_kws={'label': "Cramér's V"},
-    annot_kws={"size": 9} # Slightly larger annotations
+    annot_kws={"size": 9}  # Slightly larger annotations
 )
-ax.set_title("Heatmap of Cramér's V values for all question pairs.", fontsize=14) # Match paper
+ax.set_title(
+    "Heatmap of Cramér's V values for all question pairs.",
+    fontsize=14
+)  # Match paper
 ax.set_xticklabels([f'{i}' for i in range(1,11)]) # Simpler 1-10 labels like paper
 ax.set_yticklabels([f'{i}' for i in range(1,11)]) # Simpler 1-10 labels like paper
 plt.tight_layout()
@@ -345,5 +354,5 @@ plt.savefig(FIGS_DIR / 'cramers_v_heatmap_figure2.png', dpi=300)
 plt.close(fig)
 print("Cramér's V Heatmap (Figure 2) generated.")
 
-print('\nExploratory visualisations saved to figs/ directory.')
+print('\nExploratory visualisations saved to manuscript/figs/ directory.')
 # --- END OF FILE 02_explore.py ---

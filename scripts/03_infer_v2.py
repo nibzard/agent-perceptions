@@ -20,7 +20,7 @@ import matplotlib.font_manager as fm
 DATA_PATH = Path('data/clean_survey.parquet')
 RESULTS_DIR = Path('results')
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-FIGS_DIR = Path('figs') # For forest plot
+FIGS_DIR = Path('manuscript/figs') # For forest plot
 FIGS_DIR.mkdir(parents=True, exist_ok=True)
 QUESTIONS = [str(i) for i in range(1, 11)] # Q1 to Q10
 ALPHA = 0.05
@@ -427,5 +427,5 @@ if logit_model_fitted and logit_results_summary_df is not None:
 else:
     print("Skipping forest plot: Logistic regression model or results not available.")
 
-print("\nInferential analysis complete. Check results/ and figs/ directories.")
+print("\nInferential analysis complete. Check results/ and manuscript/figs/ directories.")
 # --- END OF FILE 03_infer.py ---

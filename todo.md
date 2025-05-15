@@ -31,10 +31,10 @@
 
 ## 4. Exploratory Analysis & Visualization
 - [x] Implement `scripts/02_explore_v2.py` for:
-  - [x] Generating and saving 100% horizontal bar charts for Q1-Q10 (individual, grid, heatmap of proportions) to `figs/`.
+  - [x] Generating and saving 100% horizontal bar charts for Q1-Q10 (individual, grid, heatmap of proportions) to `manuscript/figs/`.
   - [x] Saving proportion data to `results/all_questions_results.json`.
-  - [x] Generating and saving Mosaic plot for Q1 × Q3 to `figs/` (as `Q1xQ3_mosaic_supplementary_s1.png`).
-  - [x] Generating and saving Cramér's V heatmap for Q1-Q10 to `figs/` (as `cramers_v_heatmap_figure2.png`).
+  - [x] Generating and saving Mosaic plot for Q1 × Q3 to `manuscript/figs/` (as `Q1xQ3_mosaic_supplementary_s1.png`).
+  - [x] Generating and saving Cramér's V heatmap for Q1-Q10 to `manuscript/figs/` (as `cramers_v_heatmap_figure2.png`).
 
 ## 5. Inferential Statistics & Modeling
 - [x] Implement `scripts/03_infer_v2.py` for all inferential analyses:
