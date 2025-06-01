@@ -1,41 +1,41 @@
                                                       Results: Logit
 ==========================================================================================================================
 Model:                                   Logit                               Method:                              MLE     
-Dependent Variable:                      deploy_now                          Pseudo R-squared:                    0.204   
-Date:                                    2025-05-12 21:14                    AIC:                                 165.9310
-No. Observations:                        126                                 BIC:                                 242.5107
-Df Model:                                26                                  Log-Likelihood:                      -55.966 
-Df Residuals:                            99                                  LL-Null:                             -70.300 
-Converged:                               1.0000                              LLR p-value:                         0.32639 
+Dependent Variable:                      deploy_now                          Pseudo R-squared:                    0.185   
+Date:                                    2025-06-01 11:53                    AIC:                                 172.2531
+No. Observations:                        130                                 BIC:                                 249.6766
+Df Model:                                26                                  Log-Likelihood:                      -59.127 
+Df Residuals:                            103                                 LL-Null:                             -72.549 
+Converged:                               1.0000                              LLR p-value:                         0.41749 
 No. Iterations:                          7.0000                              Scale:                               1.0000  
 --------------------------------------------------------------------------------------------------------------------------
                                                                             Coef.  Std.Err.    z    P>|z|   [0.025  0.975]
 --------------------------------------------------------------------------------------------------------------------------
-Intercept                                                                  -4.1136   1.5842 -2.5967 0.0094 -7.2186 -1.0086
-Q("Q1_Already happening for simple tasks")[T.True]                          0.6012   0.7330  0.8203 0.4121 -0.8354  2.0378
-Q("Q1_Machines will write 99% of code by 2030")[T.True]                     1.2796   0.9472  1.3509 0.1767 -0.5769  3.1362
-Q("Q1_Never - creativity can't be automated")[T.True]                       0.2508   0.9244  0.2713 0.7862 -1.5611  2.0626
-Q("Q2_Knowledge work industry")[T.True]                                     1.0791   1.0807  0.9985 0.3180 -1.0390  3.1973
-Q("Q2_Software development lifecycle")[T.True]                              0.9116   1.0233  0.8908 0.3730 -1.0941  2.9173
-Q("Q2_Traditional education systems")[T.True]                               0.6559   1.2341  0.5315 0.5951 -1.7628  3.0747
-Q("Q4_The agents themselves (new legal frameworks needed)")[T.True]         0.6793   1.0877  0.6246 0.5322 -1.4524  2.8111
-Q("Q4_The company deploying the agents")[T.True]                           -0.7840   0.6187 -1.2672 0.2051 -1.9966  0.4286
-Q("Q4_The developers who built the system")[T.True]                        -0.7499   0.9763 -0.7681 0.4425 -2.6634  1.1637
-Q("Q5_Perfect theory of mind about humans")[T.True]                        -0.5002   1.5282 -0.3273 0.7434 -3.4954  2.4950
-Q("Q5_Self-modification of their own architecture")[T.True]                 1.6648   0.7749  2.1483 0.0317  0.1459  3.1837
-Q("Q5_True causal reasoning")[T.True]                                       1.1318   0.7703  1.4693 0.1417 -0.3779  2.6414
-Q("Q6_5-10 (balance of specialization and coordination)")[T.True]           0.2037   0.9658  0.2109 0.8330 -1.6891  2.0965
-Q("Q6_Fluid/dynamic number based on task (emergent organization)")[T.True]  0.5866   0.8062  0.7276 0.4669 -0.9935  2.1667
-Q("Q7_Job security (including your own position)")[T.True]                 -0.0573   0.6748 -0.0849 0.9324 -1.3798  1.2652
-Q("Q7_Nothing, the risks outweigh the benefits")[T.True]                    0.2297   0.7377  0.3114 0.7555 -1.2163  1.6757
-Q("Q7_Privacy (complete work environment monitoring)")[T.True]             -0.8667   0.7862 -1.1024 0.2703 -2.4077  0.6743
-Q("Q8_Lack of genuine curiosity and self-directed learning")[T.True]        0.4352   1.1107  0.3918 0.6952 -1.7417  2.6120
-Q("Q8_Reasoning failures under uncertainty")[T.True]                        1.0197   1.1016  0.9256 0.3546 -1.1395  3.1788
-Q("Q8_The need for human oversight")[T.True]                                1.0175   1.1481  0.8862 0.3755 -1.2328  3.2678
-Q("Q9_Open source transparency")[T.True]                                   -0.5182   0.7217 -0.7181 0.4727 -1.9327  0.8962
-Q("Q9_Self-governing AI systems")[T.True]                                  -1.4392   0.9019 -1.5958 0.1105 -3.2068  0.3284
-Q("Q9_Strong regulation and licensing")[T.True]                            -1.5151   0.9707 -1.5608 0.1186 -3.4177  0.3875
-Q("Q10_Develop new types of work we can't yet imagine")[T.True]             1.0144   0.9133  1.1107 0.2667 -0.7756  2.8043
-Q("Q10_Focus on purely interpersonal/emotional work")[T.True]               0.0981   1.5100  0.0649 0.9482 -2.8615  3.0576
-Q("Q10_Provide oversight and creative direction")[T.True]                   0.1797   0.9060  0.1984 0.8427 -1.5960  1.9554
+Intercept                                                                  -3.5142   1.3139 -2.6745 0.0075 -6.0894 -0.9389
+Q("Q1_Already happening for simple tasks")[T.True]                          0.7331   0.7093  1.0336 0.3013 -0.6570  2.1232
+Q("Q1_Machines will write 99% of code by 2030")[T.True]                     1.2847   0.9083  1.4143 0.1573 -0.4956  3.0650
+Q("Q1_Never - creativity can't be automated")[T.True]                       0.7488   0.8614  0.8692 0.3847 -0.9396  2.4371
+Q("Q2_Knowledge work industry")[T.True]                                     1.2975   1.0628  1.2208 0.2222 -0.7856  3.3806
+Q("Q2_Software development lifecycle")[T.True]                              1.1993   0.9922  1.2086 0.2268 -0.7455  3.1440
+Q("Q2_Traditional education systems")[T.True]                               1.3534   1.1728  1.1539 0.2485 -0.9454  3.6521
+Q("Q4_The agents themselves (new legal frameworks needed)")[T.True]         0.8926   1.0586  0.8432 0.3991 -1.1822  2.9673
+Q("Q4_The company deploying the agents")[T.True]                           -0.6104   0.5962 -1.0239 0.3059 -1.7789  0.5581
+Q("Q4_The developers who built the system")[T.True]                        -0.6194   0.9670 -0.6406 0.5218 -2.5146  1.2758
+Q("Q5_Perfect theory of mind about humans")[T.True]                        -0.6600   1.4776 -0.4467 0.6551 -3.5560  2.2360
+Q("Q5_Self-modification of their own architecture")[T.True]                 1.3324   0.7053  1.8891 0.0589 -0.0500  2.7148
+Q("Q5_True causal reasoning")[T.True]                                       0.9511   0.7234  1.3147 0.1886 -0.4668  2.3690
+Q("Q6_5-10 (balance of specialization and coordination)")[T.True]           0.2501   0.9251  0.2703 0.7869 -1.5631  2.0632
+Q("Q6_Fluid/dynamic number based on task (emergent organization)")[T.True]  0.5018   0.7484  0.6706 0.5025 -0.9649  1.9686
+Q("Q7_Job security (including your own position)")[T.True]                 -0.2100   0.6606 -0.3180 0.7505 -1.5048  1.0847
+Q("Q7_Nothing, the risks outweigh the benefits")[T.True]                    0.0452   0.7165  0.0631 0.9497 -1.3591  1.4495
+Q("Q7_Privacy (complete work environment monitoring)")[T.True]             -0.8247   0.7648 -1.0783 0.2809 -2.3236  0.6742
+Q("Q8_Lack of genuine curiosity and self-directed learning")[T.True]        0.0735   1.0244  0.0717 0.9428 -1.9344  2.0813
+Q("Q8_Reasoning failures under uncertainty")[T.True]                        0.6151   0.9926  0.6197 0.5355 -1.3304  2.5606
+Q("Q8_The need for human oversight")[T.True]                                0.6244   1.0422  0.5991 0.5491 -1.4183  2.6671
+Q("Q9_Open source transparency")[T.True]                                   -0.6838   0.6841 -0.9995 0.3175 -2.0247  0.6571
+Q("Q9_Self-governing AI systems")[T.True]                                  -1.4511   0.8876 -1.6348 0.1021 -3.1908  0.2886
+Q("Q9_Strong regulation and licensing")[T.True]                            -1.7988   0.9360 -1.9219 0.0546 -3.6334  0.0357
+Q("Q10_Develop new types of work we can't yet imagine")[T.True]             0.6942   0.8518  0.8150 0.4151 -0.9753  2.3637
+Q("Q10_Focus on purely interpersonal/emotional work")[T.True]              -0.3452   1.4446 -0.2390 0.8111 -3.1765  2.4861
+Q("Q10_Provide oversight and creative direction")[T.True]                  -0.2047   0.8380 -0.2443 0.8070 -1.8471  1.4377
 ==========================================================================================================================

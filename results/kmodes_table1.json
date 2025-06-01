@@ -1,21 +1,21 @@
 [
   {
     "cluster": 0,
-    "size": 55,
+    "size": 79,
     "Q1_mode": "Already happening for simple tasks",
     "Q2_mode": "Software development lifecycle",
-    "Q3_mode": "We ARE deploying them now",
-    "Q4_mode": "All decisions need human approval (defeating the purpose)",
-    "Q5_mode": "Self-modification of their own architecture",
+    "Q3_mode": "Regulatory/compliance or technical readiness concerns",
+    "Q4_mode": "The company deploying the agents",
+    "Q5_mode": "True causal reasoning",
     "Q6_mode": "Fluid/dynamic number based on task (emergent organization)",
-    "Q7_mode": "Job security (including your own position)",
-    "Q8_mode": "The need for human oversight",
+    "Q7_mode": "Control (allow autonomous decision execution)",
+    "Q8_mode": "Reasoning failures under uncertainty",
     "Q9_mode": "Open source transparency",
-    "Q10_mode": "Develop new types of work we can't yet imagine"
+    "Q10_mode": "Provide oversight and creative direction"
   },
   {
     "cluster": 1,
-    "size": 14,
+    "size": 15,
     "Q1_mode": "Never - creativity can't be automated",
     "Q2_mode": "No opinion",
     "Q3_mode": "Regulatory/compliance or technical readiness concerns",
@@ -29,16 +29,16 @@
   },
   {
     "cluster": 2,
-    "size": 57,
+    "size": 36,
     "Q1_mode": "Already happening for simple tasks",
-    "Q2_mode": "Knowledge work industry",
-    "Q3_mode": "Regulatory/compliance or technical readiness concerns",
-    "Q4_mode": "The company deploying the agents",
+    "Q2_mode": "Software development lifecycle",
+    "Q3_mode": "We ARE deploying them now",
+    "Q4_mode": "All decisions need human approval (defeating the purpose)",
     "Q5_mode": "Self-modification of their own architecture",
     "Q6_mode": "Fluid/dynamic number based on task (emergent organization)",
-    "Q7_mode": "Control (allow autonomous decision execution)",
-    "Q8_mode": "Reasoning failures under uncertainty",
-    "Q9_mode": "Open source transparency",
-    "Q10_mode": "Provide oversight and creative direction"
+    "Q7_mode": "Job security (including your own position)",
+    "Q8_mode": "The need for human oversight",
+    "Q9_mode": "Market competition and user choice",
+    "Q10_mode": "Develop new types of work we can't yet imagine"
   }
 ]

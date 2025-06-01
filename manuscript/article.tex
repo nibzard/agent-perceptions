@@ -79,21 +79,23 @@
 \maketitle
 
 \begin{abstract}
-Autonomous multi-agent AI systems are poised to transform various
-industries, particularly software development and knowledge work.
-Understanding current perceptions among professionals is crucial for
-anticipating adoption challenges, ethical considerations, and future
-workforce development. This study analyzes responses from 126
-participants to a survey on the capabilities, impact, and governance of
-AI agents. We explore expected timelines for AI replacing programmers,
-identify perceived barriers to deployment, and examine beliefs about
-responsibility when agents make critical decisions. Key findings reveal
-three distinct clusters of respondents, with attitudes toward automation
-timelines and regulatory concerns being significant predictors of
-current AI agent deployment. These insights highlight the need for
-organizations to address compliance concerns and establish clear
-governance frameworks as they integrate autonomous agents into their
-workflows.
+	Autonomous multi-agent AI systems are poised to transform various
+	industries, particularly software development and knowledge work.
+	Understanding current perceptions among professionals is crucial for
+	anticipating adoption challenges, ethical considerations, and future
+	workforce development. This study analyzes responses from 130
+	participants to a survey on the capabilities, impact, and governance of
+	AI agents. We explore expected timelines for AI replacing programmers,
+	identify perceived barriers to deployment, and examine beliefs about
+	responsibility when agents make critical decisions. Key findings reveal
+	three distinct clusters of respondents. While the study explored factors
+	associated with current AI agent deployment, the initial logistic regression model
+	did not yield statistically significant predictors, suggesting that deployment decisions
+	are complex and may be influenced by factors not fully captured or that a larger sample is needed.
+	These insights highlight the need for
+	organizations to address compliance concerns (a commonly cited barrier) and establish clear
+	governance frameworks as they integrate autonomous agents into their
+	workflows.
 \end{abstract}
 
 
@@ -162,27 +164,27 @@ few studies have specifically focused on perceptions of autonomous agent systems
 This paper addresses this gap by exploring five key research questions:
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{RQ1}: What are the prevailing expectations regarding the
-  timeline and impact of AI agents on programming and various
-  industries?
-\item
-  \textbf{RQ2}: What are the perceived barriers to deploying autonomous
-  agent systems, and who is deemed responsible for their actions?
-\item
-  \textbf{RQ3}: What are the key attitudes towards the capabilities,
-  control, and ethical trade-offs of AI agents?
-\item
-  \textbf{RQ4}: Can distinct segments of respondents with coherent views
-  on AI agents be identified?
-\item
-  \textbf{RQ5}: What factors predict a company's current deployment of
-  autonomous agent systems?
+	\def\labelenumi{\arabic{enumi}.}
+	\tightlist
+	\item
+	      \textbf{RQ1}: What are the prevailing expectations regarding the
+	      timeline and impact of AI agents on programming and various
+	      industries?
+	\item
+	      \textbf{RQ2}: What are the perceived barriers to deploying autonomous
+	      agent systems, and who is deemed responsible for their actions?
+	\item
+	      \textbf{RQ3}: What are the key attitudes towards the capabilities,
+	      control, and ethical trade-offs of AI agents?
+	\item
+	      \textbf{RQ4}: Can distinct segments of respondents with coherent views
+	      on AI agents be identified?
+	\item
+	      \textbf{RQ5}: What factors predict a company's current deployment of
+	      autonomous agent systems?
 \end{enumerate}
 
-By answering these questions through a survey of 126 respondents, this
+By answering these questions through a survey of 130 respondents, this
 study provides empirical insights that can inform developers building
 agent systems, organizations considering their adoption, policymakers
 crafting regulatory frameworks, and educators preparing the workforce
@@ -210,6 +212,8 @@ question phrasing and response options. The use of fixed-choice
 responses was intended to facilitate quantitative analysis and
 clustering.
 
+The online survey platform was developed using a generative AI tool (Vercel v0), enabling rapid prototyping and deployment. This platform provided an interactive dashboard for real-time visualization of responses and an LLM-generated summary of answers, publicly accessible at \url{https://v0-audience-mindset-probe.vercel.app/}.
+
 \textbf{Distribution Methodology:} The survey was distributed online
 during April-May 2025, with primary distribution occurring during the
 ``Coding with AI: The End of Software Development as We Know It''
@@ -231,7 +235,7 @@ A.
 
 \subsection{Participants}\label{participants}
 
-After data cleaning, our final sample consisted of 126 respondents.
+After data cleaning, our final sample consisted of 130 respondents.
 Demographic information was limited to geographical region, extracted
 from timezone metadata. Participants spanned multiple continents, with
 the largest representations from the Americas (68, 54\%), Europe (47,
@@ -249,7 +253,7 @@ enhancing anonymity and preparing the data for statistical analysis.
 
 \textbf{Descriptive Statistics}: We calculated response proportions for
 each question (Q1-Q10) and visualized distributions using horizontal bar
-charts and heatmaps.
+charts and heatmaps. (See Figure \ref{fig:all_questions_grid})
 
 \textbf{Association Analysis}: To identify relationships between
 responses to different questions, we conducted Pearson's Chi-squared
@@ -259,12 +263,12 @@ Effect sizes were quantified using Cramér's V, with thresholds of
 $\leq 0.1$ (negligible), 0.1-0.29 (small), 0.3-0.49 (medium), and $\geq 0.5$ (large). To control for multiple comparisons, we applied the
 Benjamini-Hochberg procedure with a false discovery rate of 0.05. A
 heatmap of Cramér's V values was generated to visualize the strength of
-associations between questions.
+associations between questions (Figure \ref{fig:cramers_v_heatmap}).
 
 \textbf{Dimensionality Reduction and Clustering}: To identify latent
 patterns in responses, we applied Multiple Correspondence Analysis (MCA)
 to Q1-Q10 using the \texttt{prince} package. Dimensions were retained to
-explain at least 20\% of total inertia. Building on the MCA results, we
+explain at least 18.57\% of total inertia (with three components explaining 23.83\%). (See Figure \ref{fig:mca_biplot} for MCA biplot). Building on the MCA results, we
 applied K-Modes clustering (with the \texttt{kmodes} package) to segment
 respondents, testing k values from 2 to 5. The optimal number of
 clusters (k=3) was selected based on the elbow plot of inertia (cost)
@@ -281,14 +285,14 @@ included as predictors because they are mutually exclusive with the
 outcome variable (i.e., a respondent cannot both be deploying and cite a
 barrier). Prior to modeling, we checked for multicollinearity using
 Variance Inflation Factors (VIFs). Model results were reported as odds
-ratios with 95\% confidence intervals and visualized in a forest plot.
+ratios with 95\% confidence intervals and visualized in a forest plot (Figure \ref{fig:logit_forest_plot}).
 Future work could explore the predictive value of specific Q3 barriers
 for non-deployment using alternative modeling approaches.
 
 \section{Results}\label{results}
 
 \subsection{Response Distributions and Overall
-Sentiments}\label{response-distributions-and-overall-sentiments}
+	Sentiments}\label{response-distributions-and-overall-sentiments}
 
 \textbf{Timeline Perceptions}: The most common view on AI replacing
 programmers (Q1) was that this is ``Already happening for simple tasks''
@@ -338,39 +342,39 @@ rather than replacement scenario, with strong preferences for
 maintaining human oversight while leveraging efficiency gains.
 
 \subsection{Associations Between
-Perceptions}\label{associations-between-perceptions}
+	Perceptions}\label{associations-between-perceptions}
 
 Our analysis of associations between responses revealed several
 significant relationships after controlling for multiple comparisons.
-Supplementary Figure 3 presents a heatmap of Cramér's V
+Figure \ref{fig:cramers_v_heatmap} presents a heatmap of Cramér's V
 values for all question pairs.
 
 The strongest associations (Cramér's V \textgreater{} 0.3, indicating
 medium to large effect sizes) were observed between:
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{Timeline and Deployment (Q1-Q3)}: Respondents who believed AI
-  replacement was already happening or imminent were more likely to
-  report current deployment of agents.
-\item
-  \textbf{Responsibility and Control (Q4-Q6)}: Views on who should be
-  responsible for agent decisions were strongly associated with
-  preferences for control models.
-\item
-  \textbf{Control and Trust (Q6-Q8)}: Preferences for control mechanisms
-  were associated with perceptions of developer trustworthiness.
-\item
-  \textbf{Trust and Ethics (Q8-Q9)}: Trust in developer claims was
-  associated with attitudes toward ethical trade-offs.
-\item
-  \textbf{Ethics and Future Roles (Q9-Q10)}: Ethical perspectives on AI
-  agents correlated with views on the future role of programmers.
+	\def\labelenumi{\arabic{enumi}.}
+	\item
+	      \textbf{Timeline and Deployment (Q1-Q3)}: Respondents who believed AI
+	      replacement was already happening or imminent were more likely to
+	      report current deployment of agents.
+	\item
+	      \textbf{Responsibility and Control (Q4-Q6)}: Views on who should be
+	      responsible for agent decisions were strongly associated with
+	      preferences for control models.
+	\item
+	      \textbf{Control and Trust (Q6-Q8)}: Preferences for control mechanisms
+	      were associated with perceptions of developer trustworthiness.
+	\item
+	      \textbf{Trust and Ethics (Q8-Q9)}: Trust in developer claims was
+	      associated with attitudes toward ethical trade-offs.
+	\item
+	      \textbf{Ethics and Future Roles (Q9-Q10)}: Ethical perspectives on AI
+	      agents correlated with views on the future role of programmers.
 \end{enumerate}
 
 The mosaic plot of Q1 (timeline) by Q3 (deployment) is shown in
-Supplementary Figure 1.
+Supplementary Figure \ref{fig:q1xq3_mosaic}.
 
 These associations highlight how perceptions of AI agents form
 interconnected belief systems rather than isolated opinions, with views
@@ -378,23 +382,20 @@ on technical capabilities, ethical frameworks, and governance models
 mutually reinforcing each other.
 
 \subsection{Latent Attitudes and Respondent
-Segments}\label{latent-attitudes-and-respondent-segments}
+	Segments}\label{latent-attitudes-and-respondent-segments}
 
 Multiple Correspondence Analysis revealed underlying dimensions in the
-response patterns. The first two dimensions explained approximately 20\%
-of the total inertia, with additional dimensions offering diminishing
+response patterns. The first two dimensions explained approximately 18.57\%
+of the total inertia (with three components explaining 23.83\%), and additional dimensions offered diminishing
 returns.
 
 K-Modes clustering identified three distinct respondent segments (see
 Supplementary Table 1 for full modal profiles):
 
 \begin{enumerate}
-  \item \textbf{Cluster 0 (n=55):} Active adopters of AI agents for simple tasks with dynamic team sizing, but insisting on human sign-off. \\
-    \textbf{Profile:} This group is characterized by current deployment of agents, a focus on dynamic organizational structures, and concern for oversight and transparency. Their preference for human approval in all decisions, despite deploying agents, suggests a pragmatic yet cautious approach to autonomy.
-  \item \textbf{Cluster 1 (n=14):} Skeptical of AI replacing programmers and creativity, with many "No opinion" responses and citing regulatory or technical barriers. \\
-    \textbf{Profile:} This small group is marked by high rates of “No opinion” responses and skepticism about AI replacing programmers. Their responses suggest limited engagement with or exposure to AI agent technologies, and a strong emphasis on regulatory or technical barriers.
-  \item \textbf{Cluster 2 (n=57):} Technologically engaged in knowledge work but wary of compliance, self-modification risks, and reasoning failures under uncertainty. \\
-    \textbf{Profile:} This group is also technologically engaged, but more likely to see regulatory or technical concerns as barriers. They favor dynamic agent organization, are concerned about agent self-modification and reasoning failures, and see future human roles as providing oversight and creative direction.
+	\item \textbf{Cluster 0 (n=55):} This group is characterized by a belief that AI is \textit{already happening for simple tasks} and that the \textit{software development lifecycle} will be most affected. They tend to cite \textit{regulatory/compliance or technical readiness concerns} as deployment barriers and believe \textit{the company deploying the agents} should be responsible for mistakes. Their primary concern is \textit{true causal reasoning} capabilities. They envision a \textit{fluid/dynamic number of agents based on task (emergent organization)} and are willing to sacrifice \textit{control (allow autonomous decision execution)} for efficiency. They worry about \textit{reasoning failures under uncertainty} and advocate for \textit{open source transparency}. They see future human roles as \textit{providing oversight and creative direction}.
+	\item \textbf{Cluster 1 (n=14):} This small group is marked by skepticism, believing that \textit{creativity can't be automated} by AI. They frequently responded \textit{No opinion} to questions about industry disruption, agent concerns, collaboration models, sacrifices for efficiency, trust in developers, and ethical approaches. They also cite \textit{regulatory/compliance or technical readiness concerns} as barriers and hold \textit{the company deploying the agents} responsible. Their future role for programmers is also \textit{No opinion}.
+	\item \textbf{Cluster 2 (n=57):} This large group also believes AI is \textit{already happening for simple tasks} and will disrupt the \textit{software development lifecycle}. Unlike Cluster 0, many in this group report \textit{We ARE deploying them now}. They believe \textit{all decisions need human approval (defeating the purpose)} regarding responsibility. A key concern is \textit{self-modification of their own architecture}. They also prefer a \textit{fluid/dynamic number of agents} and are concerned about \textit{job security (including your own position)} when considering sacrifices. They worry about \textit{the need for human oversight} and prefer \textit{market competition and user choice} for ethical governance. They envision humans will \textit{develop new types of work we can't yet imagine}.
 \end{enumerate}
 
 
@@ -408,50 +409,13 @@ future roles for humans.
 
 \subsection{Predictors of Agent Deployment}\label{predictors-of-agent-deployment}
 
-The logistic regression analysis identified several significant
-predictors of current AI agent deployment (see Supplementary
-Figure 4). After controlling for other factors, respondents were
-significantly more likely to report current deployment if they:
+The logistic regression analysis was conducted to identify predictors of current AI agent deployment. The overall model was not statistically significant (Likelihood Ratio Test p-value = 0.4175), suggesting that the included predictors (responses to Q1, Q2, and Q4-Q10) do not, as a set, reliably distinguish between respondents who are currently deploying AI agents and those who are not.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Believed AI replacement is ``Already happening for simple tasks'' (OR
-  = 3.2, 95\% CI: 1.4-7.3) or ``Machines will write 99\% of code by
-  2030'' (OR = 4.1, 95\% CI: 1.6-10.4), compared to believing creativity
-  can't be automated.
-\item
-  Identified industries other than software development as most likely
-  to be disrupted (suggesting broader rather than narrow views of AI
-  impact).
-\item
-  Favored ``All parties sharing responsibility'' for agent decisions (OR
-  = 2.8, 95\% CI: 1.2-6.5) compared to placing responsibility solely on
-  developers.
-\item
-  Expressed willingness to ``Sacrifice significant control for maximum
-  efficiency'' (OR = 3.5, 95\% CI: 1.3-9.2) compared to never
-  sacrificing control.
-\end{enumerate}
+Furthermore, when examining individual predictors, none reached statistical significance at the conventional p < 0.05 level after accounting for other variables in the model (see Figure \ref{fig:logit_forest_plot} for the forest plot of odds ratios). While some variables showed tendencies (e.g., views on AI replacement timelines or willingness to sacrifice control), these were not strong enough to be considered statistically significant in this model.
 
-Conversely, respondents were significantly less likely to report current
-deployment if they:
+A warning for moderate multicollinearity (Variance Inflation Factor > 5 for some predictors) was noted, which can inflate standard errors and make it more difficult to detect significant individual predictors. This suggests that some predictor variables were correlated with each other, complicating the interpretation of their unique effects.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Cited ``Regulatory/compliance concerns'' as a barrier (OR = 0.3, 95\%
-  CI: 0.1-0.8).
-\item
-  Believed developers ``Frequently misrepresent capabilities'' (OR =
-  0.4, 95\% CI: 0.2-0.9).
-\end{enumerate}
-
-These findings suggest that both technical perspectives (views on AI
-timeline and capabilities) and organizational factors (attitudes toward
-regulation and responsibility) influence deployment decisions. The
-significant negative association with regulatory concerns highlights the
-importance of clear compliance frameworks in enabling adoption.
+Given the non-significant overall model and lack of individually significant predictors, we cannot confidently identify specific attitudes or beliefs from Q1, Q2, or Q4-Q10 that predict current AI agent deployment based on this analysis. The factors influencing deployment appear to be more complex or were not fully captured by the predictors in this model. Future research with larger samples or different sets of predictors might be necessary to clarify these relationships.
 
 Multicollinearity checks confirmed acceptable Variance Inflation Factors
 (\textless5) for all predictors, indicating that the model provides
@@ -466,29 +430,23 @@ Our analysis of perceptions toward autonomous AI agents revealed several
 important patterns:
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Most respondents acknowledged AI's growing impact on programming but
-  favored collaborative rather than replacement scenarios, with strong
-  preferences for maintaining human oversight.
-\item
-  Three distinct segments emerged: Pragmatic Adopters already embracing
-  agent technologies, Cautious Regulators concerned with governance
-  frameworks, and Uncertain Observers with limited exposure to these
-  technologies.
-\item
-  Current deployment of AI agents was significantly associated with
-  optimistic views on AI timelines and willingness to share
-  responsibility across stakeholders, while regulatory concerns
-  represented the most significant barrier.
-\item
-  Perceptions about different aspects of AI agents (capabilities,
-  governance, ethics) formed interconnected belief systems rather than
-  isolated opinions.
+	\def\labelenumi{\arabic{enumi}.}
+	\item
+	      Most respondents acknowledged AI's growing impact on programming but
+	      favored collaborative rather than replacement scenarios, with strong
+	      preferences for maintaining human oversight.
+	\item
+	      Three distinct segments emerged based on K-Modes clustering of survey responses, revealing different combinations of attitudes towards AI timelines, barriers, responsibility, and future roles.
+	\item
+	      The logistic regression model attempting to predict current AI agent deployment based on survey responses was not statistically significant overall, and no individual predictors reached statistical significance. This suggests that the measured attitudes in this study, as a set, did not strongly predict current deployment status, possibly due to sample size, multicollinearity, or other unmeasured factors.
+	\item
+	      Perceptions about different aspects of AI agents (capabilities,
+	      governance, ethics) formed interconnected belief systems rather than
+	      isolated opinions, as shown by the association analysis (Cramér's V).
 \end{enumerate}
 
 \subsection{Interpretation and
-Implications}\label{interpretation-and-implications}
+	Implications}\label{interpretation-and-implications}
 
 The prevalence of the ``Already happening'' response regarding AI
 replacement timelines (44\%) suggests that for many respondents, this is
@@ -516,15 +474,7 @@ preference for human oversight transcended our identified clusters,
 suggesting it may represent a consensus position even among diverse
 stakeholder groups.
 
-Our predictive modeling results highlight how technical, organizational,
-and ethical perspectives combine to influence deployment decisions. The
-negative association between regulatory concerns and deployment
-emphasizes the importance of addressing governance questions to enable
-broader adoption. Similarly, the negative association with distrust of
-developer claims aligns with \cite{LiuCHI2024} finding that perceived
-trustworthiness strongly influences attitudes toward AI agents across
-cultures, suggesting that transparency and responsible communication by
-AI developers may accelerate adoption.
+Our predictive modeling results were not statistically significant, meaning we could not confidently identify specific attitudes from our survey that predict current AI agent deployment. The non-significant findings from the logistic regression emphasize that the decision to deploy AI agents is likely multifaceted and may be influenced by factors not fully captured in our survey, or that the relationships are more complex than the model could detect with the current sample size and observed multicollinearity. The previously noted strong negative association between regulatory concerns and deployment, for example, while plausible, was not statistically supported in the revised analysis as a direct predictor when accounting for other factors in the model. This underscores the need for further research, possibly with larger samples or different methodological approaches (e.g., qualitative case studies), to better understand the drivers and barriers of AI agent adoption. The importance of addressing governance questions to enable broader adoption remains a strong theme from the descriptive data (Q3 barriers) even if not borne out as a statistically significant predictor in this specific model.
 
 The experimental evidence from \cite{NoyZhang2023} showing that
 generative AI can substantially boost productivity (40\% faster
@@ -549,80 +499,81 @@ Several limitations should be considered when interpreting these
 findings:
 
 \begin{enumerate}
-\tightlist
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{Sample Characteristics}: With 126 respondents and limited
-  demographic information, we cannot claim representativeness for the
-  broader technology sector or general population. The sample likely
-  overrepresents individuals with interest in AI and technology.
-\item
-  \textbf{Explained Variance in MCA}: The first two dimensions of the
-  Multiple Correspondence Analysis (MCA) explained approximately 20\% of
-  the total inertia. While this is typical for survey data with many
-  categorical variables, it means that a substantial portion of the
-  variance in responses is not captured by the main dimensions used for
-  clustering. As a result, the identified clusters, though
-  interpretable, may not fully represent the underlying complexity of
-  respondent attitudes. Findings related to cluster structure and
-  interpretation should therefore be viewed as suggestive rather than
-  definitive, and future work with larger samples or alternative
-  dimensionality reduction techniques may yield more robust
-  segmentation.
-\item
-  \textbf{Survey Instrument Limitations}: The survey relied on
-  fixed-choice questions with specific wording, which, while
-  facilitating quantitative analysis and clustering, may have
-  constrained the range of perspectives captured. Some respondents noted
-  that certain questions felt leading or that response options did not
-  fully reflect their views. As a result, nuanced or minority opinions
-  may be underrepresented, and the findings should be interpreted with
-  this limitation in mind. Future studies could incorporate more
-  open-ended items or cognitive pre-testing to better capture the
-  diversity of attitudes toward AI agents.
+	\tightlist
+	\def\labelenumi{\arabic{enumi}.}
+	\item
+	      \textbf{Sample Characteristics}: With 130 respondents and limited
+	      demographic information, we cannot claim representativeness for the
+	      broader technology sector or general population. The sample likely
+	      overrepresents individuals with interest in AI and technology.
+	\item
+	      \textbf{Explained Variance in MCA}: The first two dimensions of the
+	      Multiple Correspondence Analysis (MCA) explained approximately 18.57\% of
+	      the total inertia (with three components explaining 23.83\%).
+	      While this is typical for survey data with many
+	      categorical variables, it means that a substantial portion of the
+	      variance in responses is not captured by the main dimensions used for
+	      clustering. As a result, the identified clusters, though
+	      interpretable, may not fully represent the underlying complexity of
+	      respondent attitudes. Findings related to cluster structure and
+	      interpretation should therefore be viewed as suggestive rather than
+	      definitive, and future work with larger samples or alternative
+	      dimensionality reduction techniques may yield more robust
+	      segmentation.
+	\item
+	      \textbf{Survey Instrument Limitations}: The survey relied on
+	      fixed-choice questions with specific wording, which, while
+	      facilitating quantitative analysis and clustering, may have
+	      constrained the range of perspectives captured. Some respondents noted
+	      that certain questions felt leading or that response options did not
+	      fully reflect their views. As a result, nuanced or minority opinions
+	      may be underrepresented, and the findings should be interpreted with
+	      this limitation in mind. Future studies could incorporate more
+	      open-ended items or cognitive pre-testing to better capture the
+	      diversity of attitudes toward AI agents.
 \end{enumerate}
 
 \subsection{Future Research
-Directions}\label{future-research-directions}
+	Directions}\label{future-research-directions}
 
 This study suggests several promising avenues for future research:
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{Longitudinal Studies}: Tracking how perceptions change as AI
-  agent capabilities evolve would provide valuable insights into
-  adaptation processes, particularly as agent frameworks mature from
-  lower TRLs to production-ready systems \cite{Wrona2023}.
-\item
-  \textbf{Comparative Analyses}: Examining differences in perceptions
-  across stakeholder groups (developers, managers, end users,
-  regulators) could inform targeted communication and implementation
-  strategies. \cite{LiuCHI2024} finding of significant cultural
-  differences in AI agent perceptions suggests that geographic and
-  cultural factors should be explicitly considered in future work.
-\item
-  \textbf{Organizational Case Studies}: Detailed examinations of
-  organizations that have successfully deployed agent systems could
-  identify best practices for overcoming the regulatory and compliance
-  barriers identified in our survey. Following \cite{Brown2025}
-  approach, studies could investigate how different feedback and
-  transparency mechanisms affect trust in autonomous agents within real
-  organizational contexts.
-\item
-  \textbf{Regulatory Framework Development}: Research on governance
-  models specifically adapted to the unique challenges of autonomous
-  agents could address the identified compliance barriers. This might
-  include exploring distributed responsibility models that align with
-  our respondents' preference for shared accountability among
-  developers, users, and the agent itself.
-\item
-  \textbf{Skill Transition Mapping}: Building on \cite{NoyZhang2023}
-  productivity findings, studies on how programming and knowledge work
-  skills are evolving in response to AI agents could inform educational
-  and workforce development initiatives. This could help prepare workers
-  for the supervisory and high-level design roles that our respondents
-  envisioned as the future of programming.
+	\def\labelenumi{\arabic{enumi}.}
+	\item
+	      \textbf{Longitudinal Studies}: Tracking how perceptions change as AI
+	      agent capabilities evolve would provide valuable insights into
+	      adaptation processes, particularly as agent frameworks mature from
+	      lower TRLs to production-ready systems \cite{Wrona2023}.
+	\item
+	      \textbf{Comparative Analyses}: Examining differences in perceptions
+	      across stakeholder groups (developers, managers, end users,
+	      regulators) could inform targeted communication and implementation
+	      strategies. \cite{LiuCHI2024} finding of significant cultural
+	      differences in AI agent perceptions suggests that geographic and
+	      cultural factors should be explicitly considered in future work.
+	\item
+	      \textbf{Organizational Case Studies}: Detailed examinations of
+	      organizations that have successfully deployed agent systems could
+	      identify best practices for overcoming the regulatory and compliance
+	      barriers identified in our survey. Following \cite{Brown2025}
+	      approach, studies could investigate how different feedback and
+	      transparency mechanisms affect trust in autonomous agents within real
+	      organizational contexts.
+	\item
+	      \textbf{Regulatory Framework Development}: Research on governance
+	      models specifically adapted to the unique challenges of autonomous
+	      agents could address the identified compliance barriers. This might
+	      include exploring distributed responsibility models that align with
+	      our respondents' preference for shared accountability among
+	      developers, users, and the agent itself.
+	\item
+	      \textbf{Skill Transition Mapping}: Building on \cite{NoyZhang2023}
+	      productivity findings, studies on how programming and knowledge work
+	      skills are evolving in response to AI agents could inform educational
+	      and workforce development initiatives. This could help prepare workers
+	      for the supervisory and high-level design roles that our respondents
+	      envisioned as the future of programming.
 \end{enumerate}
 
 \section{Conclusion}\label{conclusion}
@@ -634,18 +585,17 @@ landscape where most respondents acknowledged AI's growing impact on
 programming while favoring collaborative models that maintain meaningful
 human oversight.
 
-The identification of three distinct respondent segments---Pragmatic
-Adopters, Cautious Regulators, and Uncertain Observers---highlights the
+The identification of three distinct respondent segments based on their patterns of responses highlights the
 diversity of perspectives even within what is likely a technically
 informed sample. These segments can help technology developers,
 organizational leaders, and policymakers craft targeted strategies to
 address specific concerns and leverage particular opportunities.
 
-The prominence of regulatory concerns as a barrier to deployment
+The prominence of regulatory concerns as a barrier to deployment (identified in Q3 responses)
 reinforces recent findings by \cite{Wrona2023} regarding the
 readiness gap between academic prototypes and production-grade systems,
 emphasizing that autonomous AI agent adoption is not solely a technical
-challenge but also a governance and compliance challenge. Organizations
+challenge but also a governance and compliance challenge. While our logistic regression model did not find regulatory concerns to be a statistically significant predictor of non-deployment when other factors were considered, its high ranking as a perceived barrier in the descriptive data warrants attention. Organizations
 seeking to implement these technologies should invest in robust
 frameworks for accountability, auditability, and oversight alongside
 technical capabilities.
@@ -700,23 +650,23 @@ The survey data, analysis scripts, and other materials supporting the findings o
 \section{Appendix A: Survey Items}\label{appendix-a-survey-items}
 
 \textbf{Q1: When do you think AI will be able to replace professional
-programmers?} - Never - creativity can't be automated - 5-10 years for
+	programmers?} - Never - creativity can't be automated - 5-10 years for
 most programming tasks - Already happening for simple tasks - Machines
 will write 99\% of code by 2030 - No opinion
 
 \textbf{Q2: Which industry do you think will be most disrupted by
-autonomous AI agents in the next 5 years?} - Software development and IT
+	autonomous AI agents in the next 5 years?} - Software development and IT
 - Finance and banking - Healthcare and medicine - Customer service and
 support - No opinion
 
 \textbf{Q3: What is the biggest barrier to deploying autonomous agent
-systems in your organization?} - We ARE deploying them now -
+	systems in your organization?} - We ARE deploying them now -
 Regulatory/compliance or technical readiness concerns - Fear of the
 unknown - Technical leadership doesn't understand the potential - No
 opinion
 
 \textbf{Q4: Who should be responsible when an autonomous agent makes a
-critical mistake or decision?} - Developers who created the agent - End
+	critical mistake or decision?} - Developers who created the agent - End
 users who deployed the agent - The agent itself (as a legal entity) -
 All parties share responsibility - No opinion
 
@@ -741,73 +691,78 @@ generally represent capabilities accurately - They sometimes exaggerate
 capabilities - They frequently misrepresent capabilities - No opinion
 
 \textbf{Q9: How should society approach the ethical trade-offs with
-autonomous agents?} - Prioritize innovation even with some safety risks
+	autonomous agents?} - Prioritize innovation even with some safety risks
 - Prioritize safety even at the cost of innovation - Case-by-case
 evaluation with expert oversight - No opinion
 
 \textbf{Q10: What will be the role of human programmers in an era of
-code-generating AI?} - Focus on high-level design while machines handle
+	code-generating AI?} - Focus on high-level design while machines handle
 implementation - Become supervisors and reviewers of machine-generated
 code - Transition to user experience and requirements gathering - Made
 completely obsolete - No opinion
 
 \section{Supplementary Figures \&
-Tables}\label{supplementary-figures-tables}
+  Tables}\label{supplementary-figures-tables}
 
 \begin{figure}[htbp]
 
-{\includegraphics[width=\textwidth, keepaspectratio]{figs/Q1xQ3_mosaic_supplementary_s1.png}}
+	{\includegraphics[width=\textwidth, keepaspectratio]{figs/Q1xQ3_mosaic_supplementary_s1.png}}
 
-\caption{Mosaic Plot Q1 × Q3.}
+	\caption{Mosaic Plot Q1 × Q3 (Supplementary Figure S1).}\label{fig:q1xq3_mosaic}
 
 \end{figure}%
 
 \begin{figure}[htbp]
 
-{\includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{figs/all_questions_grid_improved.png}}
+	{\includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{figs/all_questions_grid_improved.png}}
 
-\caption{Distribution of responses for all
-survey questions.}
-
-\end{figure}%
-
-\begin{figure}[htbp]
-
-{\includegraphics[width=\textwidth, keepaspectratio]{figs/cramers_v_heatmap_figure2.png}}
-
-\caption{Heatmap of Cramér's V values for all
-question pairs.}
+	\caption{Distribution of responses for all survey questions (Figure 1).}\label{fig:all_questions_grid}
 
 \end{figure}%
 
 \begin{figure}[htbp]
 
-{\includegraphics[width=\textwidth, keepaspectratio]{figs/logit_forest_plot_figure4.png}}
+	{\includegraphics[width=\textwidth, keepaspectratio]{figs/cramers_v_heatmap_figure2.png}}
 
-\caption{Forest plot of odds ratios for current
-AI agent deployment.}
+	\caption{Heatmap of Cramér's V values for all question pairs (Figure 2).}\label{fig:cramers_v_heatmap}
+
+\end{figure}%
+
+\begin{figure}[htbp]
+	\centering
+	{\includegraphics[width=0.8\textwidth, keepaspectratio]{figs/mca_biplot_clusters_figure3.png}}
+	\caption{MCA Biplot of Q1-Q10 Responses (Figure 3). This figure illustrates the relationships between categories of the survey questions in the first two MCA dimensions. Categories that are close together tend to be chosen together by respondents. The percentages on the axes indicate the amount of inertia explained by each dimension. Due to the number of categories, some labels may overlap.}
+	\label{fig:mca_biplot}
+\end{figure}%
+
+
+\begin{figure}[htbp]
+
+	{\includegraphics[width=\textwidth, keepaspectratio]{figs/logit_forest_plot_figure4.png}}
+
+	\caption{Forest plot of odds ratios for current AI agent deployment (Figure 4). Since the overall model was not significant and no predictors reached p $<$ 0.05, this plot illustrates the estimated odds ratios and their 95\% confidence intervals, but these should be interpreted with caution.}\label{fig:logit_forest_plot}
 
 \end{figure}%
 
 \begin{table}[htbp]
-\caption{Summary of thematic clusters (0, 1, and 2) based on participant responses to qualitative questions (Q1--Q10) regarding autonomous agents. Each cell represents the dominant theme identified in that cluster for the corresponding question.}
-\centering
-\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
-\toprule
-cluster & 0 & 1 & 2 \\
-\midrule
-Q1 & Already happening for simple tasks & Never - creativity can't be automated & Already happening for simple tasks \\
-Q2 & Software development lifecycle & No opinion & Knowledge work industry \\
-Q3 & We ARE deploying them now & Regulatory/compliance or technical readiness concerns & Regulatory/compliance or technical readiness concerns \\
-Q4 & All decisions need human approval (defeating the purpose) & The company deploying the agents & The company deploying the agents \\
-Q5 & Self-modification of their own architecture & No opinion & Self-modification of their own architecture \\
-Q6 & Fluid/dynamic number based on task (emergent organization) & No opinion & Fluid/dynamic number based on task (emergent organization) \\
-Q7 & Job security (including your own position) & No opinion & Control (allow autonomous decision execution) \\
-Q8 & The need for human oversight & No opinion & Reasoning failures under uncertainty \\
-Q9 & Open source transparency & No opinion & Open source transparency \\
-Q10 & Develop new types of work we can't yet imagine & No opinion & Provide oversight and creative direction \\
-\bottomrule
-\end{tabularx}
+	\caption{Summary of thematic clusters (0, 1, and 2) based on participant responses to qualitative questions (Q1--Q10) regarding autonomous agents. Each cell represents the dominant theme identified in that cluster for the corresponding question (Supplementary Table S1).}\label{table:kmodes_clusters}
+	\centering
+	\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+		\toprule
+		cluster & 0                                                          & 1                                                     & 2                                                          \\
+		\midrule
+		Q1      & Already happening for simple tasks                         & Never - creativity can't be automated                 & Already happening for simple tasks                         \\
+		Q2      & Software development lifecycle                             & No opinion                                            & Knowledge work industry                                    \\
+		Q3      & We ARE deploying them now                                  & Regulatory/compliance or technical readiness concerns & Regulatory/compliance or technical readiness concerns      \\
+		Q4      & All decisions need human approval (defeating the purpose)  & The company deploying the agents                      & The company deploying the agents                           \\
+		Q5      & Self-modification of their own architecture                & No opinion                                            & Self-modification of their own architecture                \\
+		Q6      & Fluid/dynamic number based on task (emergent organization) & No opinion                                            & Fluid/dynamic number based on task (emergent organization) \\
+		Q7      & Job security (including your own position)                 & No opinion                                            & Control (allow autonomous decision execution)              \\
+		Q8      & The need for human oversight                               & No opinion                                            & Reasoning failures under uncertainty                       \\
+		Q9      & Open source transparency                                   & No opinion                                            & Open source transparency                                   \\
+		Q10     & Develop new types of work we can't yet imagine             & No opinion                                            & Provide oversight and creative direction                   \\
+		\bottomrule
+	\end{tabularx}
 \end{table}
 
 

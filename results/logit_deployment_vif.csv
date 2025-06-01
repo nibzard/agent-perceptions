@@ -1,27 +1,27 @@
 feature,VIF
-Q1_Already happening for simple tasks,3.2153350807384236
-Q1_Machines will write 99% of code by 2030,2.0189464241246755
-Q1_Never - creativity can't be automated,1.9231559656422468
-Q2_Knowledge work industry,3.4757056982684946
-Q2_Software development lifecycle,5.260005956547187
-Q2_Traditional education systems,2.545182711565656
-Q4_The agents themselves (new legal frameworks needed),1.4795710517890792
-Q4_The company deploying the agents,2.719956361756717
-Q4_The developers who built the system,1.5460507209521623
-Q5_Perfect theory of mind about humans,1.5467928416336176
-Q5_Self-modification of their own architecture,2.818551126108242
-Q5_True causal reasoning,2.3007814993417517
-Q6_5-10 (balance of specialization and coordination),2.4484528540054042
-Q6_Fluid/dynamic number based on task (emergent organization),4.5404131968602535
-Q7_Job security (including your own position),1.935427921375557
-"Q7_Nothing, the risks outweigh the benefits",1.8443280770458221
-Q7_Privacy (complete work environment monitoring),1.8028724613531226
-Q8_Lack of genuine curiosity and self-directed learning,3.101535940039015
-Q8_Reasoning failures under uncertainty,6.64400077339093
-Q8_The need for human oversight,4.066467184357461
-Q9_Open source transparency,3.1948226105828526
-Q9_Self-governing AI systems,1.861454839334021
-Q9_Strong regulation and licensing,2.167628822262633
-Q10_Develop new types of work we can't yet imagine,5.125344326717227
-Q10_Focus on purely interpersonal/emotional work,2.2595760211210907
-Q10_Provide oversight and creative direction,5.882863514146432
+Q1_Already happening for simple tasks,3.0600750650068025
+Q1_Machines will write 99% of code by 2030,1.9580043745204174
+Q1_Never - creativity can't be automated,1.8583574216298477
+Q2_Knowledge work industry,3.326470665495591
+Q2_Software development lifecycle,4.8109205627404314
+Q2_Traditional education systems,2.4365556743602985
+Q4_The agents themselves (new legal frameworks needed),1.4607478962921874
+Q4_The company deploying the agents,2.768722042393546
+Q4_The developers who built the system,1.526963029389216
+Q5_Perfect theory of mind about humans,1.5383400613084448
+Q5_Self-modification of their own architecture,2.73264101835319
+Q5_True causal reasoning,2.260609087438823
+Q6_5-10 (balance of specialization and coordination),2.4135965136687476
+Q6_Fluid/dynamic number based on task (emergent organization),4.363340288589238
+Q7_Job security (including your own position),1.8961649116911963
+"Q7_Nothing, the risks outweigh the benefits",1.806861140614971
+Q7_Privacy (complete work environment monitoring),1.7575018831675482
+Q8_Lack of genuine curiosity and self-directed learning,2.870842002806718
+Q8_Reasoning failures under uncertainty,5.867273507397949
+Q8_The need for human oversight,3.6755909411014147
+Q9_Open source transparency,3.108765051612156
+Q9_Self-governing AI systems,1.8410625960448446
+Q9_Strong regulation and licensing,2.106341894634257
+Q10_Develop new types of work we can't yet imagine,4.702357704167386
+Q10_Focus on purely interpersonal/emotional work,2.120196143788905
+Q10_Provide oversight and creative direction,5.287125886786793
